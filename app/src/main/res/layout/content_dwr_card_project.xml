@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="dwr"
+            type="com.railprosfs.railsapp.data.observable.DwrItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:onClick="hideSoftKeyboard"
+            android:visibility="gone"
+            card_view:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/HorzDelimit"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/project_job_indent"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="@dimen/project_job_indent" />
+
+                    <TextView
+                        android:id="@+id/titleReviewerNote"
+                        style="@style/mDelimit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="18dp"
+                        android:background="@color/rpWhite"
+                        android:paddingStart="@dimen/title_padding"
+                        android:paddingEnd="@dimen/title_padding"
+                        android:text="@string/review_notes"
+                        android:textAllCaps="true" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/lblReviewName"
+                        style="@style/mHeadline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50" />
+
+                    <TextView
+                        android:id="@+id/lblReviewDate"
+                        style="@style/mHeadline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:textAlignment="textEnd" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/lblReviewNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:onClick="hideSoftKeyboard"
+            card_view:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/HorzDelimit"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/project_job_indent"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="@dimen/project_job_indent" />
+
+                <TextView
+                    android:id="@+id/titleProject"
+                    style="@style/mDelimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/rpWhite"
+                    android:paddingStart="@dimen/title_padding"
+                    android:paddingEnd="@dimen/title_padding"
+                    android:text="@string/project"
+                    android:textAllCaps="true" />
+
+                <!-- Top right header, same on every form -->
+                <TextView
+                    android:id="@+id/lblStatusDwr"
+                    style="@style/mHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titleProject"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_toStartOf="@+id/lblStatusDwrIcon"
+                    android:text="@={dwr.labelStatus}" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/lblStatusDwrIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/titleProject"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="ShowDwrServerId" />
+
+                <TextView
+                    android:id="@+id/lblWorkerName"
+                    style="@style/mHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblStatusDwrIcon"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@={dwr.workerName}" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fieldWorkDateIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/lblWorkerName"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_toStartOf="@+id/fieldWorkDate"
+                    android:onClick="DayPicker"
+                    android:src="@drawable/baseline_calendar_today_24px" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fieldWorkDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblWorkerName"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    app:errorEnabled="true"
+                    app:helperTextEnabled="true"
+                    app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputWorkDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:text="@={dwr.workDate}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Dynamic Form data, order is important as we use visibility to adjust. -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleProject"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="-2dp"
+                    android:orientation="vertical">
+
+                    <!-- Classification -->
+                    <LinearLayout
+                        android:id="@+id/layoutClassType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldClassTypeIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="ClassificationPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldClassType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputClassType"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.classification}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Non-Billing Reason -->
+                    <LinearLayout
+                        android:id="@+id/layoutNonBilledReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldNonBilledReasonIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="NonBilledReasonPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldNonBilledReason"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputNonBilledReason"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.nonBilledReason}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property -->
+                    <LinearLayout
+                        android:id="@+id/layoutRailroad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldRailroadIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="PropertyPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldRailroad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputRailroad"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="textNoSuggestions|textCapCharacters"
+                                android:text="@={dwr.property}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Job Number -->
+                    <LinearLayout
+                        android:id="@+id/layoutJobNbr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="JobPicker"
+                            android:src="@drawable/ic_baseline_search_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldJobNbr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputJobNbr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.jobNumber}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Location -->
+                    <LinearLayout
+                        android:id="@+id/layoutLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldLocationCity"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputLocationCity"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:inputType="textCapWords"
+                                android:text="@={dwr.locationCity}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldLocationStateIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="LocationStatePicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldLocationState"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputLocationState"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="textNoSuggestions|textCapCharacters"
+                                android:text="@={dwr.locationState}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Contractor -->
+                    <LinearLayout
+                        android:id="@+id/layoutContractor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldContractorName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputContractorName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:inputType="text"
+                                android:text="@={dwr.contractName}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Construction Day-->
+                    <LinearLayout
+                        android:id="@+id/layoutConstruction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldConstructionDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputConstructionDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:inputType="text"
+                                android:text="@={dwr.constructionDay}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldInputTotalWorkDays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputTotalWorkDays"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:inputType="text"
+                                android:text="@={dwr.inputTotalWorkDays}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields CN -->
+                    <LinearLayout
+                        android:id="@+id/layoutCN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldCNDataNSOCC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputCNDataNSOCC"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.cnDataN_SO_CC}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldCNDataNetwork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputCNDataNetwork"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.cnDataNumber}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldCNDataCounty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputCNDataCounty"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.cnDataCounty}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields CSX -->
+                    <LinearLayout
+                        android:id="@+id/layoutCSX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldCSXDataRegionIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="RegionPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldCSXDataRegion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputCSXDataRegion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.csxDataRegionDspl}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldCSXDataOpNbr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputCSXDataOpNbr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.csxDataOpNbr}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields KCS -->
+                    <LinearLayout
+                        android:id="@+id/layoutKCS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldKCSDataContractorCnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputKCSDataContractorCnt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="number"
+                                android:text="@={dwr.kcsDataContractorCnt}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields UP -->
+                    <LinearLayout
+                        android:id="@+id/layoutUP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldUPDataDotXing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputUPDataDotXing"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.upDataDotXing}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldUPDataFolderNbr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputUPDataFolderNbr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.upDataFolderNbr}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldUPDataServiceUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputUPDataServiceUnit"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.upDataServiceUnit}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields KCT -->
+                    <LinearLayout
+                        android:id="@+id/layoutKCT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldKCTDataTaskOrder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputKCTDataTaskOrder"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.kctDataTaskOrder}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields WMATA -->
+                    <LinearLayout
+                        android:id="@+id/layoutWMATARwic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldClientRwicName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputClientRwicName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.clientName}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldClientRwicNbr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputClientRwicNbr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="number"
+                                android:text="@={dwr.wmataCallNumber}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields WMATA (cont.) -->
+                    <LinearLayout
+                        android:id="@+id/layoutWMATA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldWmataLineIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="WmataLinePicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWmataLine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWmataLine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.inputWMLine}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldWmataStationIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="WmataStationNbrPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWmataStation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWmataStation"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.inputWMStation}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields WMATA (cont.) -->
+                    <LinearLayout
+                        android:id="@+id/layoutWMATATrack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldWmataTrackIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="WmataTrackPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWmataTrack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWmataTrack"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.inputWMTrack}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldWmataWeatherIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="WeatherPicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWmataWeather"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWmataWeather"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.descWeatherConditions}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Property Specific Fields SCRRA -->
+                    <LinearLayout
+                        android:id="@+id/layoutSCRRA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldTypeOfVehicleIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="TypeOfVehiclePicker"
+                            android:src="@drawable/baseline_list_alt_24px" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/fieldTypeOfVehicle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginEnd="12dp"
+                                app:errorEnabled="true"
+                                app:helperTextEnabled="true"
+                                app:hintEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/inputTypeOfVehicle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:ems="10"
+                                    android:focusable="false"
+                                    android:inputType="none"
+                                    android:text="@={dwr.typeOfVehicle}" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/csx_layout"
+                        bind:dwr="@{dwr}" />
+
+                    <include
+                        layout="@layout/weather_layout"
+                        bind:dwr="@{dwr}" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

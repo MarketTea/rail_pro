@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowJobItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/assignmentIdJI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_viewJI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:id="@+id/layoutJI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/rpWhite">
+
+            <ImageView
+                android:id="@+id/imgHomeMapLinkJT"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_below="@+id/dateRangeJI"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/location"
+                android:src="@drawable/locationlink" />
+
+            <ImageView
+                android:id="@+id/imgJobDetaiLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dateRangeJI"
+                android:layout_alignStart="@+id/lblJobNbrJI"
+                android:layout_alignBottom="@+id/jobDescJI"
+                android:layout_toStartOf="@id/imgHomeMapLinkJT"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/location"
+                android:onClick="ShowJobDetail" />
+
+            <LinearLayout
+                android:id="@+id/layoutCollapsedJI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jobDescJI"
+                android:layout_alignStart="@+id/dateRangeJI"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnExpandJI"
+                    android:layout_width="126dp"
+                    android:layout_height="42dp"
+                    android:text="@string/expand" />
+
+                <Button
+                    android:id="@+id/btnMoreJI"
+                    style="@style/AppTheme.Button.Opposite"
+                    android:layout_width="126dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="4dp"
+                    android:onClick="ShowJobDetail"
+                    android:text="@string/more_info" />
+            </LinearLayout>
+
+            <!-- Layout Hiding DWR/JOBSETUPS -->
+            <LinearLayout
+                android:id="@+id/layoutDWRsJI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jobDescJI"
+                android:layout_alignStart="@+id/dateRangeJI"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <!-- Setup a Job -->
+                <LinearLayout
+                    android:id="@+id/layoutExpandedJI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btnCollapseJI"
+                        android:layout_width="126dp"
+                        android:layout_height="42dp"
+                        android:text="@string/collapse" />
+
+                    <Button
+                        android:id="@+id/btnMore2JI"
+                        style="@style/AppTheme.Button.Opposite"
+                        android:layout_width="126dp"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="4dp"
+                        android:onClick="ShowJobDetail"
+                        android:text="@string/more_info" />
+                </LinearLayout>
+                <!-- Start a Job Setup -->
+                <RelativeLayout
+                    android:id="@+id/extraJobSetup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJobSetup"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJobSetupLink"
+                        style="@style/mListlink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJobSetup"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/start_job_setup" />
+                </RelativeLayout>
+                <!-- Start a Cover Sheet -->
+                <RelativeLayout
+                    android:id="@+id/extraCoverSheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusCoverSheet"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblCoverSheetLink"
+                        style="@style/mListlink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusCoverSheet"
+                        android:onClick="ShowCsDetail"
+                        android:text="@string/start_cover_sheet" />
+                </RelativeLayout>
+                <!-- Start a DWR -->
+                <RelativeLayout
+                    android:id="@+id/extraDwrStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrStart"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrStartLink"
+                        style="@style/mListlink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrStart"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/start_new_dwr" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraJsRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJsRow1"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailJSRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblJsRow1"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarJsRow1"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJsDateRow1"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusJsRow1"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblJsRow1"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJsRow1"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/jobsetup" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraJsRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJsRow2"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailJSRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblJsRow2"
+                        android:visibility="gone"/>
+
+
+                    <TextView
+                        android:id="@+id/lblBarJsRow2"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJsDateRow2"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusJsRow2"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblJsRow2"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJsRow2"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/jobsetup" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraJsRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJsRow3"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailJSRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblJsRow3"
+                        android:visibility="gone"/>
+
+
+                    <TextView
+                        android:id="@+id/lblBarJsRow3"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJsDateRow3"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusJsRow3"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblJsRow3"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJsRow3"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/jobsetup" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraJsRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJsRow4"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailJSRow4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblJsRow4"
+                        android:visibility="gone"/>
+
+
+                    <TextView
+                        android:id="@+id/lblBarJsRow4"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJsDateRow4"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusJsRow4"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblJsRow4"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJsRow4"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/jobsetup" />
+                </RelativeLayout>
+                <!-- Past DWRs -->
+                <RelativeLayout
+                    android:id="@+id/extraJsRow5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusJsRow5"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailJSRow5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblJsRow5"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarJsRow5"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblJsDateRow5"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusJsRow5"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblJsRow5"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusJsRow5"
+                        android:onClick="ShowJsDetail"
+                        android:text="@string/jobsetup" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraDwrRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrRow1"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailDwrRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblDwrRow1"
+                        android:visibility="gone"/>
+
+
+                    <TextView
+                        android:id="@+id/lblBarDwrRow1"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrDateRow1"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow1"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblDwrRow1"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow1"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/dwr" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraDwrRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrRow2"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailDwrRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblDwrRow2"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarDwrRow2"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrDateRow2"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow2"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblDwrRow2"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow2"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/dwr" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraDwrRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrRow3"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailDwrRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblDwrRow3"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarDwrRow3"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrDateRow3"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow3"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblDwrRow3"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow3"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/dwr" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/extraDwrRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrRow4"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailDwrRow4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblDwrRow4"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarDwrRow4"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrDateRow4"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow4"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblDwrRow4"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow4"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/dwr" />
+                </RelativeLayout>
+                <!-- Collapse Buttons -->
+                <RelativeLayout
+                    android:id="@+id/extraDwrRow5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgStatusDwrRow5"
+                        android:layout_width="@dimen/dwr_status_icon"
+                        android:layout_height="@dimen/dwr_status_icon"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+                        android:contentDescription="@string/status" />
+
+                    <TextView
+                        android:id="@+id/lblFailDwrRow5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginBottom="@dimen/dwr_list_vertical_margin"
+                        android:layout_below="@id/lblDwrRow5"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/lblBarDwrRow5"
+                        style="@style/HorzBar"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:id="@+id/lblDwrDateRow5"
+                        style="@style/mSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_marginEnd="3dp"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow5"
+                        tools:text="7/15/18" />
+
+                    <TextView
+                        android:id="@+id/lblDwrRow5"
+                        style="@style/mListline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dwr_indent"
+                        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+                        android:layout_toStartOf="@+id/imgStatusDwrRow5"
+                        android:onClick="ShowDwrDetail"
+                        android:text="@string/dwr" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/jobIdJI"
+                style="@style/mHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dateRangeJI"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/lblJobNbrJI"
+                tools:text="123456" />
+
+            <TextView
+                android:id="@+id/jobDescJI"
+                style="@style/mSubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jobIdJI"
+                android:layout_alignStart="@+id/dateRangeJI"
+                android:layout_marginTop="4dp"
+                android:layout_toStartOf="@+id/imgHomeMapLinkJT"
+                tools:text="This is the description of the job..." />
+
+            <!-- Expand Buttons -->
+            <TextView
+                android:id="@+id/dateRangeJI"
+                style="@style/mOverline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:text="2/11/18 - 8/31/18" />
+
+            <!-- Expanded Views -->
+            <TextView
+                android:id="@+id/lblJobNbrJI"
+                style="@style/mHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dateRangeJI"
+                android:layout_alignStart="@id/dateRangeJI"
+                android:layout_marginTop="8dp"
+                android:text="@string/jobnumber" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

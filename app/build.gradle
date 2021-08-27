@@ -1,0 +1,118 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+def getBuildDate() {
+    return new Date().format('MM/dd/yyyy')
+}
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.railprosfs.railsapp"
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 92
+        versionName "0.92.7"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            /* If you just want to use superuser locally, set this to false. */
+            buildConfigField "boolean", "OAUTH_ON", "true"
+            buildConfigField "String", "BUILDDATE", '"'+getBuildDate()+'"'
+            buildConfigField "String", "BUILD", '"DEV"'
+        }
+        railpros {
+            initWith debug
+            buildConfigField "String", "URL_BASE_API", '"http://rails-api.railpros.com/api/"'
+            buildConfigField "String", "OAUTH_TENENT", '"https://login.microsoftonline.com/5384b56e-74f5-4534-b967-074c24d7d2f6/oauth2/authorize"'
+            buildConfigField "String", "OAUTH_CLIENT_ID", '"7da12ef2-1d86-4715-a3d5-35cea656dcfd"'
+            buildConfigField "String", "OAUTH_RESOURCE_ID", '"8a878cdd-dd45-4193-bce5-ee1d2001925f"'
+            buildConfigField "String", "OAUTH_REDIRECT_URI", '"http://rails.railpros.com"'
+            buildConfigField "String", "BUILD", '"PROD"'
+        }
+        sharedazure {
+            initWith debug
+            buildConfigField "String", "BUILD", '"JESSE"'
+            buildConfigField "String", "BUILDDATE", '"'+getBuildDate()+'"'
+            buildConfigField "boolean", "OAUTH_ON", "true"
+
+        }
+        shared {
+            initWith debug
+            buildConfigField "String", "BUILD", '"KEVIN"'
+            buildConfigField "boolean", "OAUTH_ON", "false"
+        }
+        qa {
+            initWith debug
+            /* If you just want to use superuser locally, set this to false. */
+            buildConfigField "boolean", "OAUTH_ON", "true"
+            buildConfigField "String", "BUILDDATE", '"'+getBuildDate()+'"'
+            buildConfigField "String", "BUILD", '"QA"'
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "OAUTH_ON", "true"
+            buildConfigField "String", "BUILD", '"PROD"'
+            buildConfigField "String", "BUILDDATE", '"'+getBuildDate()+'"'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    /* Android compatibility libraries - various.*/
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
+    /* Layout Libraries */
+    implementation "androidx.gridlayout:gridlayout:1.0.0"
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    /* GSON - Helps parse JSON <-> Java classes. See https://github.com/google/gson. */
+    implementation 'com.google.code.gson:gson:2.8.6'
+    /* Material components */
+    implementation 'com.google.android.material:material:1.1.0'
+    /* Room components */
+    implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
+    /* Lifecycle components */
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    /* Picasso Image Library */
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    /* RxJava Not Using Yet*/
+    //implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //See Room Database
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
+    // Location Services from play store
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    // Check for v11.4.2 or higher
+    implementation 'com.google.firebase:firebase-core:18.0.2'
+    // Add the Firebase Crashlytics SDK.
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
+    // Recommended: Add the Google Analytics SDK.
+    implementation 'com.google.firebase:firebase-analytics:18.0.2'
+    //Microsoft ADAL Login
+    implementation('com.microsoft.aad:adal:1.15.1') {
+        exclude group: 'com.android.support'
+        exclude group: 'com.google.code.gson'
+    }
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
+}
+repositories {
+    mavenCentral()
+}

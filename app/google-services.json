@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "322535056582",
+    "firebase_url": "https://rails-mobile-app.firebaseio.com",
+    "project_id": "rails-mobile-app",
+    "storage_bucket": "rails-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322535056582:android:43e0a3cb59add10a",
+        "android_client_info": {
+          "package_name": "com.railprosfs.railsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322535056582-d0b7faian3np66nfieb38m1r62rmch30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuzdt1k5TEJPp9S-SSyp3zaaWWNes5pA0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

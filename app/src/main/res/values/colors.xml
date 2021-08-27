@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF486995</color>
+    <color name="colorPrimaryDark">#FF40608A</color>
+    <color name="colorAccent">#0284ff</color>
+    <color name="error">#FA8258</color>
+    <color name="rpWhite">#FFFFFFFF</color>
+    <color name="rpBlack">#DE000000</color>
+    <color name="rpBlackFaded">#99000000</color>
+    <color name="rpBlackTitle">#61000000</color>
+    <color name="rpWater">#FFE7F2F8</color>
+    <color name="rpGray">#FF979797</color>
+    <color name="rpFlat">#FAFAFA</color>
+
+</resources>

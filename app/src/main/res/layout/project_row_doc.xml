@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Project Documents -->
+<androidx.gridlayout.widget.GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:alignmentMode="alignMargins"
+    app:columnCount="3"
+    android:paddingBottom="24dp"
+    app:rowCount="1">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/oneCardView"
+        style="@style/mDocuCard"
+        android:layout_width="0dp"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        android:onClick="LaunchDocument"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/oneUpdateDate"
+                style="@style/mOverline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="6/6/2018" />
+
+            <TextView
+                android:id="@+id/oneFilename"
+                style="@style/mHeadline"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="File Name" />
+
+            <TextView
+                android:id="@+id/oneLblView"
+                style="@style/mListlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view"
+                android:textAllCaps="true" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/twoCardView"
+        style="@style/mDocuCard"
+        android:layout_width="0dp"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        android:onClick="LaunchDocument"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            >
+            <TextView
+                android:id="@+id/twoUpdateDate"
+                style="@style/mOverline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="6/6/2018"/>
+
+            <TextView
+                android:id="@+id/twoFilename"
+                style="@style/mHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="File Name"/>
+
+            <TextView
+                android:id="@+id/twoLblView"
+                style="@style/mListlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view"
+                android:textAllCaps="true"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/treCardView"
+        style="@style/mDocuCard"
+        android:layout_width="0dp"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        android:onClick="LaunchDocument"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            >
+            <TextView
+                android:id="@+id/treUpdateDate"
+                style="@style/mOverline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="6/6/2018"/>
+
+            <TextView
+                android:id="@+id/treFilename"
+                style="@style/mHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="File Name"/>
+
+            <TextView
+                android:id="@+id/treLblView"
+                style="@style/mListlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view"
+                android:textAllCaps="true"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.gridlayout.widget.GridLayout>

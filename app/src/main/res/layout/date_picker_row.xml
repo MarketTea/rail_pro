@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="field"
+            type="com.railprosfs.railsapp.data_layout.FieldPlacementTbl"/>
+        <variable
+            name="answer"
+            type="com.railprosfs.railsapp.data.observable.JobSetupAnswer"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:clickable="@{answer.ViewVisible}"
+            android:onClick="@{answer::onDateClicked}"
+            android:src="@drawable/baseline_calendar_today_24px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            android:layout_marginBottom="12dp"
+            app:errorText="@{answer.invalid}"
+            android:hint="@{field.fieldPrompt}"
+            app:helperText="@{field.fieldInstructions}"
+            app:errorEnabled="true"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="15"
+                android:focusable="false"
+                android:inputType="none"
+                android:clickable="@{answer.ViewVisible}"
+                android:enabled="@{answer.ViewVisible}"
+                android:onClick="@{answer::onDateClicked}"
+                android:text="@={answer.date}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</layout>

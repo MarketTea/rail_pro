@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="field"
+            type="com.railprosfs.railsapp.data_layout.FieldPlacementTbl"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{field.fieldPromptVisibility, default=gone}">
+
+            <TextView
+                style="@style/HorzDelimit"
+                android:layout_marginStart="@dimen/project_job_indent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/project_job_indent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/headertitle"
+                style="@style/mDelimit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:background="@color/rpWhite"
+                android:paddingStart="@dimen/title_padding"
+                android:paddingEnd="@dimen/title_padding"
+                android:text="@{field.fieldPrompt}"
+                android:textAllCaps="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/subheader"
+            android:layout_marginLeft="72dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/mHeadline"
+            android:text="@{field.fieldInstructions}"
+            android:visibility="@{field.fieldInstructionVisibility, default=gone}"/>
+
+    </LinearLayout>
+</layout>

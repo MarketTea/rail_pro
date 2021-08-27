@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dwr"
+            type="com.railprosfs.railsapp.data.observable.DwrItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:onClick="hideSoftKeyboard"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/HorzDelimit"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/project_job_indent"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/project_job_indent" />
+
+            <TextView
+                android:id="@+id/titleWork"
+                style="@style/mDelimit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:background="@color/rpWhite"
+                android:paddingStart="@dimen/title_padding"
+                android:paddingEnd="@dimen/title_padding"
+                android:text="@string/workzone"
+                android:textAllCaps="true" />
+
+            <!-- Dynamic Form data, order is important as we use visibility to adjust. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleWork"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical">
+
+                <!-- Job Complete check box -->
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/inputJobComplete"
+                    style="@style/CheckboxCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:checked="@={dwr.onGoing}" />
+
+                <!-- Track Supervisor -->
+                <LinearLayout
+                    android:id="@+id/layoutRoadMaster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldRoadMaster"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputRoadMaster"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:inputType="textNoSuggestions"
+                            android:text="@={dwr.roadMaster}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Track Coordinates -->
+                <LinearLayout
+                    android:id="@+id/layoutTrackLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- District -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldDistrictIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="DistrictPicker"
+                            android:src="@drawable/baseline_list_alt_24px"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldDistrict"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputDistrict"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.district}" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Subdivision or Track Yard(WMATA) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldSubdivisionIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="DivisionPicker"
+                            android:src="@drawable/baseline_list_alt_24px"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldSubdivision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputSubdivision"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="18"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.subdivision}" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- WMATA Yard is used instead of SubDivision for WMATA. -->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldWmataYardIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="WmataYardPicker"
+                            android:src="@drawable/baseline_list_alt_24px"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWmataYard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWmataYard"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.subdivision}" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Start/End Mile Posts -->
+                    <LinearLayout
+                        android:id="@+id/layoutMilePosts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldMpStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputMpStart"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.mpStart}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldMpEnd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputMpEnd"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.mpEnd}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldWorkingTrack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputWorkingTrack"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:maxLength="20"
+                                android:inputType="textNoSuggestions"
+                                android:text="@={dwr.workingTrack}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <!-- WMATA uses Start/End Stations instead of traditional mile posts. -->
+                    <LinearLayout
+                        android:id="@+id/layoutStationsWMATA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldFirstStationIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="FirstStationPicker"
+                            android:src="@drawable/baseline_list_alt_24px"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldFirstStation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputFirstStation"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.mpStart}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fieldLastStationIcon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="18dp"
+                            android:onClick="LastStationPicker"
+                            android:src="@drawable/baseline_list_alt_24px"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fieldLastStation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            app:errorEnabled="true"
+                            app:helperTextEnabled="true"
+                            app:hintEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/inputLastStation"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ems="10"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@={dwr.mpEnd}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Track Condition -->
+                <LinearLayout
+                    android:id="@+id/layoutCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fieldWorkOnTrackIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp"
+                        android:onClick="TrackFoulPicker"
+                        android:src="@drawable/baseline_list_alt_24px" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldWorkOnTrack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputWorkOnTrack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:text="@={dwr.workOnTrackDspl}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Track Protection -->
+                <LinearLayout
+                    android:id="@+id/layoutProtection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            style="@style/HorzDelimit"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/project_job_indent"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="@dimen/project_job_indent" />
+
+                        <TextView
+                            android:id="@+id/subTitleProtect"
+                            style="@style/mDelimit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="18dp"
+                            android:background="@color/rpWhite"
+                            android:paddingStart="@dimen/title_padding"
+                            android:paddingEnd="@dimen/title_padding"
+                            android:text="@string/sub_title_protection" />
+
+                    </RelativeLayout>
+
+                    <include
+                        layout="@layout/protection_layout"
+                        bind:dwr="@{dwr}" />
+
+                </LinearLayout>
+
+                <!-- Work Descriptions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="58dp"
+                    android:layout_marginEnd="70dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            style="@style/HorzDelimit"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/project_job_indent"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="@dimen/project_job_indent" />
+
+                        <TextView
+                            android:id="@+id/subTitleDesc"
+                            style="@style/mDelimit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="18dp"
+                            android:background="@color/rpWhite"
+                            android:paddingStart="@dimen/title_padding"
+                            android:paddingEnd="@dimen/title_padding"
+                            android:text="@string/sub_title_description" />
+
+                    </RelativeLayout>
+
+                    <include
+                        layout="@layout/description_layout"
+                        bind:dwr="@{dwr}" />
+
+                </LinearLayout>
+
+                <!-- Pictures -->
+                <LinearLayout
+                    android:id="@+id/layoutPictures"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="70dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            style="@style/HorzDelimit"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/project_job_indent"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="@dimen/project_job_indent" />
+
+                        <TextView
+                            android:id="@+id/subTitlePic"
+                            style="@style/mDelimit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="18dp"
+                            android:background="@color/rpWhite"
+                            android:paddingStart="@dimen/title_padding"
+                            android:paddingEnd="@dimen/title_padding"
+                            android:text="@string/sub_title_picture" />
+
+                    </RelativeLayout>
+
+                    <include
+                        layout="@layout/picture_layout"
+                        bind:dwr="@{dwr}" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

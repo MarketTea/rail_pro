@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="classification_name">
+        <item>Billable Day</item>
+        <item>Job Setup</item>
+        <item>Travel and Mobilization</item>
+        <item>Conference Call</item>
+        <item>Drug Test</item>
+        <item>Rules Class</item>
+        <item>New Hire Training</item>
+        <item>Other Non-Billable</item>
+        <item>Territory Qualification</item>
+        <item>Billable Day - Utility</item>
+    </string-array>
+    <!-- The classification_code_name is used to map server properties to local names. The idea is to
+            have the values in this array match what is on the server, but matching the order
+            of the classification_name array locally.  This allows a string look up on this array
+            using data from the server, with the returned index matching the local array. Or to
+            get the server name from a local index.
+            The 2 BillableDay entries are deliberate.  The backend should have created a new
+            day classification, but instead created a attribute off of Billable Day. -->
+    <string-array name="classification_code_name">
+        <item>BillableDay</item>
+        <item>JobSetup</item>
+        <item>Travel</item>
+        <item>ConferenceCall</item>
+        <item>DrugTest</item>
+        <item>RulesClass</item>
+        <item>FieldTraining</item>
+        <item>Other</item>
+        <item>TerritoryQualification</item>
+        <item>BillableDay</item>
+    </string-array>
+    <!-- The nonbilledreason_name_base and nonbilledreason_name_scrra arrays hold the display values
+            for the lists of non-billable reasons and should be a subset of the nonbilledreason_name_max.
+            Each time a nonbilledreason_name_* array needs to be customized, just add it here and to
+            the display.  All the processing between the local value and server is managed using the
+            "max" and "code" arrays.  -->
+    <string-array name="nonbilledreason_name_base">
+        <item>Hold Over</item>
+        <item>Shadowing</item>
+        <item>Equipment</item>
+        <item>No Protection</item>
+        <item>Opportunity Loss</item>
+        <item>PTO</item>
+    </string-array>
+    <string-array name="nonbilledreason_name_scrra">
+        <item>Hold Over</item>
+        <item>Shadowing</item>
+        <item>Equipment</item>
+        <item>No Protection</item>
+        <item>Opportunity Loss</item>
+        <item>PTO</item>
+        <item>Holiday</item>
+    </string-array>
+    <string-array name="nonbilledreason_name_max">
+        <item>Hold Over</item>
+        <item>Shadowing</item>
+        <item>Equipment</item>
+        <item>No Protection</item>
+        <item>Opportunity Loss</item>
+        <item>PTO</item>
+        <item>Holiday</item>
+    </string-array>
+    <string-array name="nonbilledreason_name_code">
+        <item>HoldOver</item>
+        <item>Shadowing</item>
+        <item>Equipment</item>
+        <item>NoProtection</item>
+        <item>OpportunityLoss</item>
+        <item>PaidTimeOff</item>
+        <item>Holiday</item>
+    </string-array>
+    <string-array name="dwr_status_name">
+        <item>New</item>
+        <item>Draft</item>
+        <item>Queued</item>
+        <item>Pending</item>
+        <item>Needs Update</item>
+        <item>Approved</item>
+        <item>Processed</item>
+    </string-array>
+    <string-array name="type_of_protection">
+        <item>707</item>
+        <item>1102</item>
+        <item>1107</item>
+        <item>EC-1</item>
+        <item>Form B</item>
+        <item>Form C</item>
+        <item>Form W</item>
+        <item>Form 23</item>
+        <item>Form 23Y</item>
+        <item>Inaccessible Track/Detail</item>
+        <item>Track &#38; Time</item>
+        <item>Track Warrant</item>
+        <item>Track Authority</item>
+        <item>Observer/Point of Contact</item>
+        <item>No Protection</item>
+        <item>Watchman Lookout/Train Approach Warning</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="per_diem">
+        <item>No Per Diem</item>
+        <item>Standard Per Diem</item>
+        <item>Meals Only Per Diem</item>
+        <item>Booking Service: Travelliance</item>
+    </string-array>
+    <string-array name="per_diem_wmata">
+        <item>No Per Diem</item>
+        <item>Meals Only Per Diem</item>
+    </string-array>
+    <string-array name="per_diem_roadway_flagging">
+        <item>No Per Diem</item>
+        <item>Booking Service: Travelliance</item>
+    </string-array>
+    <string-array name="csx_region_name">
+        <item>CSX Region 1</item>
+        <item>CSX Region 2</item>
+        <item>CSX Region 3</item>
+        <item>CSX Region 4</item>
+    </string-array>
+    <string-array name="KCS_Districts">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+    </string-array>
+    <string-array name="shifts">
+        <item>Day</item>
+        <item>Night</item>
+    </string-array>
+    <string-array name="job_setup_types">
+        <item>Flagging Job Setup</item>
+        <item>Utility Job Setup</item>
+        <item>Utility Cover Sheet</item>
+    </string-array>
+    <string-array name="conditions">
+        <item>Sunny</item>
+        <item>Rain</item>
+        <item>Snow</item>
+        <item>Cloudy</item>
+        <item>Sleet</item>
+        <item>Windy</item>
+    </string-array>
+    <string-array name="wmata_yards">
+        <item>Shady Grove</item>
+        <item>Glenmont</item>
+        <item>Green Belt</item>
+        <item>New Carrolton</item>
+        <item>Largo Tail Track</item>
+        <item>Branch Ave</item>
+        <item>Alexandria</item>
+        <item>West Falls Church</item>
+        <item>Brentwood</item>
+    </string-array>
+    <string-array name="wmata_tracks">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>X</item>
+    </string-array>
+    <string-array name="type_of_vehicle">
+        <item>No Vehicle Used</item>
+        <item>Midsize Truck</item>
+        <item>Fullsize Truck</item>
+        <item>Hyrail Vehicle 1</item>
+        <item>Hyrail Vehicle 2</item>
+    </string-array>
+    <string-array name="track_foul_name">
+        <item>No Foul of Track</item>
+        <item>Potential to Foul Track</item>
+        <item>Foul of Track</item>
+    </string-array>
+    <string-array name="temp_special_cost">
+        <item>No Special Cost Centers.</item>
+    </string-array>
+    <!-- New railroads should always be added to the end of this list, since the
+            position is the index of the property.  If you added one in the middle,
+            the index stored in the database for all the railroads below it would
+            be off by one. SEE class Railroads if you need to add a new railroad!-->
+    <string-array name="property_name">
+        <item>AAF</item>
+        <item>BNSF</item>
+        <item>CN</item>
+        <item>CP</item>
+        <item>CSX</item>
+        <item>Denver Projects</item>
+        <item>eBart</item>
+        <item>FEC</item>
+        <item>G &amp; W</item>
+        <item>KC Terminal</item>
+        <item>KCS</item>
+        <item>METRA</item>
+        <item>NICTD</item>
+        <item>NS</item>
+        <item>OmniTRAX</item>
+        <item>Port Term RR Auth</item>
+        <item>SCRRA</item>
+        <item>SFRTA</item>
+        <item>SMART</item>
+        <item>Stacy &amp; Witbeck</item>
+        <item>Sunrail</item>
+        <item>Texas City Term</item>
+        <item>Track Insp</item>
+        <item>TRRA</item>
+        <item>UP</item>
+        <item>UTIL Inspect</item>
+        <item>WMATA</item>
+        <item>FGA</item>
+        <item>BART</item>
+        <item>Amtrak</item>
+        <item>RailPros</item>
+    </string-array>
+    <!-- The property_code_name is used to map server properties to local names. The idea is to
+            have the values in this array match what is on the server, but matching the order
+            of the property_name array locally.  This allows a string look up on this array
+            using data from the server, with the returned index matching the local array. Or to
+            get the server name from a local index.  The values in this array match the
+            "code" value on the server.-->
+    <string-array name="property_code_name">
+        <item>AAF</item>
+        <item>BNSF</item>
+        <item>CN</item>
+        <item>CP</item>
+        <item>CSX</item>
+        <item>Denver Projects</item>
+        <item>eBart</item>
+        <item>FEC</item>
+        <item>G &amp; W</item>
+        <item>KCT</item>
+        <item>KCS</item>
+        <item>METRA</item>
+        <item>NICTD</item>
+        <item>NS</item>
+        <item>OmniTRAX</item>
+        <item>Port Term RR Auth</item>
+        <item>SCRRA</item>
+        <item>SFRTA</item>
+        <item>SMART</item>
+        <item>Stacy &amp; Witbeck</item>
+        <item>Sunrail</item>
+        <item>Texas City Term</item>
+        <item>Track Insp</item>
+        <item>TRRA</item>
+        <item>UP</item>
+        <item>UTIL Inspect</item>
+        <item>WMATA</item>
+        <item>FGA</item>
+        <item>BART</item>
+        <item>AT</item>
+        <item>RPFS</item>
+    </string-array>
+    <string-array name="state_name">
+        <item>AL   Alabama</item>
+        <item>AK   Alaska</item>
+        <item>AZ   Arizona</item>
+        <item>AR   Arkansas</item>
+        <item>CA   California</item>
+        <item>CO   Colorado</item>
+        <item>CT   Connecticut</item>
+        <item>DC   District of Columbia</item>
+        <item>DE   Delaware</item>
+        <item>FL   Florida</item>
+        <item>GA   Georgia</item>
+        <item>HI   Hawaii</item>
+        <item>ID   Idaho</item>
+        <item>IL   Illinois</item>
+        <item>IN   Indiana</item>
+        <item>IA   Iowa</item>
+        <item>KS   Kansas</item>
+        <item>KY   Kentucky</item>
+        <item>LA   Louisiana</item>
+        <item>ME   Maine</item>
+        <item>MD   Maryland</item>
+        <item>MA   Massachusetts</item>
+        <item>MI   Michigan</item>
+        <item>MN   Minnesota</item>
+        <item>MS   Mississippi</item>
+        <item>MO   Missouri</item>
+        <item>MT   Montana</item>
+        <item>NE   Nebraska</item>
+        <item>NV   Nevada</item>
+        <item>NH   New Hampshire</item>
+        <item>NJ   New Jersey</item>
+        <item>NM   New Mexico</item>
+        <item>NY   New York</item>
+        <item>NC   North Carolina</item>
+        <item>ND   North Dakota</item>
+        <item>OH   Ohio</item>
+        <item>OK   Oklahoma</item>
+        <item>OR   Oregon</item>
+        <item>PA   Pennsylvania</item>
+        <item>RI   Rhode Island</item>
+        <item>SC   South Carolina</item>
+        <item>SD   South Dakota</item>
+        <item>TN   Tennessee</item>
+        <item>TX   Texas</item>
+        <item>UT   Utah</item>
+        <item>VT   Vermont</item>
+        <item>VA   Virginia</item>
+        <item>WA   Washington</item>
+        <item>WV   West Virginia</item>
+        <item>WI   Wisconsin</item>
+        <item>WY   Wyoming</item>
+    </string-array>
+
+    <string-array name="time_slots">
+        <item>Select Time</item>
+        <item>00:30</item>
+        <item>01:00</item>
+        <item>01:30</item>
+        <item>02:00</item>
+        <item>02:30</item>
+        <item>03:00</item>
+        <item>03:30</item>
+        <item>04:00</item>
+        <item>04:30</item>
+        <item>05:00</item>
+        <item>05:30</item>
+        <item>06:00</item>
+        <item>06:30</item>
+        <item>07:00</item>
+        <item>07:30</item>
+        <item>08:00</item>
+        <item>08:30</item>
+        <item>09:00</item>
+        <item>09:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
+        <item>24:00</item>
+    </string-array>
+
+    <string-array name="wmata_lines">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Red</item>
+        <item>Silver</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string-array name="wmata_stations_blue">
+        <item>J03 (Franconia-Springfield)</item>
+        <item>J02 (Van Dorn Street)</item>
+        <item>J01 (Quaker Lane)</item>
+        <item>C13 (King St-Old Town)</item>
+        <item>C12 (Braddock Road)</item>
+        <item>C11 (Potomac Yard)</item>
+        <item>C10 (Ronald Reagan Washington National Airport)</item>
+        <item>C09 (Crystal City)</item>
+        <item>C08 (Pentagon City)</item>
+        <item>C07 (Pentagon City)</item>
+        <item>C06 (Arlington Cemetery)</item>
+        <item>C05 (Rosslyn)</item>
+        <item>C04 (Foggy Bottom-GWU)</item>
+        <item>C03 (Farragut West)</item>
+        <item>C02 (McPherson Sq)</item>
+        <item>C01 (Metro Center)</item>
+        <item>D01 (Federal Triangle)</item>
+        <item>D02 (Smithsonian)</item>
+        <item>D03 (L\&apos;Enfant Plaza)</item>
+        <item>D04 (Federal Center SW)</item>
+        <item>D05 (Capitol South)</item>
+        <item>D06 (Eastern Market)</item>
+        <item>D07 (Potomac Ave)</item>
+        <item>D08 (Stadium-Armory)</item>
+        <item>G01 (Benning Road)</item>
+        <item>G02 (Capitol Heights)</item>
+        <item>G03 (Addison Road)</item>
+        <item>G04 (Morgan Boulevard)</item>
+        <item>G05 (Largo Town Center)</item>
+    </string-array>
+
+    <string-array name="wmata_stations_green">
+        <item>E10 (Greenbelt)</item>
+        <item>E09 (College Park-U of Md)</item>
+        <item>E08 (Prince George\&apos;s Plaza)</item>
+        <item>E07 (West Hyattsville)</item>
+        <item>E06 (Fort Totten)</item>
+        <item>E05 (Georgia Ave-Petworth)</item>
+        <item>E04 (Columbia Heights)</item>
+        <item>E03 (U Street)</item>
+        <item>E02 (Shaw-Howard U)</item>
+        <item>E01 (Mt Vernon Sq)</item>
+        <item>F01 (Gallery Place)</item>
+        <item>F02 (Archives)</item>
+        <item>F03 (L\&apos;Enfant Plaza)</item>
+        <item>F04 (Waterfront)</item>
+        <item>F05 (Navy Yard-Ballpark)</item>
+        <item>F06 (Anacostia)</item>
+        <item>F07 (Congress Heights)</item>
+        <item>F08 (Southern Ave)</item>
+        <item>F09 (Naylor Road)</item>
+        <item>F10 (Suitland)</item>
+        <item>F11 (Branch Ave)</item>
+    </string-array>
+
+    <string-array name="wmata_stations_orange">
+        <item>K08 (Vienna)</item>
+        <item>K07 (Dunn Loring)</item>
+        <item>K06 (West Falls Church)</item>
+        <item>K05 (East Falls Church)</item>
+        <item>K04 (Ballson-MU)</item>
+        <item>K03 (Virginia Sq-GMU)</item>
+        <item>K02 (Clarendon)</item>
+        <item>K01 (Court House)</item>
+        <item>C05 (Rosslyn)</item>
+        <item>C04 (Foggy Bottom-GWU)</item>
+        <item>C03 (Farragu West)</item>
+        <item>C02 (McPherson Sq)</item>
+        <item>C01 (Metro Center)</item>
+        <item>D01 (Federal Triangle)</item>
+        <item>D02 (Smithsonian)</item>
+        <item>D03 (L\&apos;Enfant Plaza)</item>
+        <item>D04 (Federal Center SW)</item>
+        <item>D05 (Capitol South)</item>
+        <item>D06 (Eastern Market)</item>
+        <item>D07 (Potomac Ave)</item>
+        <item>D08 (Stadium-Armory)</item>
+        <item>D98 ()</item>
+        <item>D09 (Minnesota Ave)</item>
+        <item>D10 (Deanwood)</item>
+        <item>D11 (Cheverly)</item>
+        <item>D12 (Landover)</item>
+        <item>D13 (New Carrollton)</item>
+    </string-array>
+
+    <string-array name="wmata_stations_red">
+        <item>A15 (Shady Grove)</item>
+        <item>A14 (Rockville)</item>
+        <item>A13 (Twinbrook)</item>
+        <item>A12 (White Flint)</item>
+        <item>A11 (Grosvenor-Strathmore)</item>
+        <item>A10 (Medical Center)</item>
+        <item>A09 (Bethesda)</item>
+        <item>A08 (Friendship Heights)</item>
+        <item>A07 (Tenleytown-AU)</item>
+        <item>A06 (Van Ness-UDC)</item>
+        <item>A05 (Cleveland Park)</item>
+        <item>A04 (Woodley Park)</item>
+        <item>A03 (Dupont Circle)</item>
+        <item>A02 (Farragut North)</item>
+        <item>A01 (Metro Center)</item>
+        <item>B01 (Gallery Place)</item>
+        <item>B02 (Judiciary Sq)</item>
+        <item>B03 (Union Station)</item>
+        <item>B35 (NoMa-Gallaudet U)</item>
+        <item>B04 (Rhode Island Ave)</item>
+        <item>B05 (Brookland-CUA)</item>
+        <item>B06 (Fort Totten)</item>
+        <item>B07 (Takoma)</item>
+        <item>B08 (Silver Spring)</item>
+        <item>B09 (Forest Glen)</item>
+        <item>B10 (Wheaton)</item>
+        <item>B11 (Glenmont)</item>
+    </string-array>
+
+    <string-array name="wmata_stations_silver">
+        <item>N06 (Wiehle-Reston East)</item>
+        <item>N05 (Wolftrap)</item>
+        <item>N04 (Spring Hill)</item>
+        <item>N03 (Greensboro)</item>
+        <item>N02 (Tysons Corner)</item>
+        <item>N01 (McLean)</item>
+        <item>K98 (K\&amp;N Junction)</item>
+        <item>K05 (East Falls Church)</item>
+        <item>K04 (Ballson-MU)</item>
+        <item>K03 (Virginia Sq-GMU)</item>
+        <item>K02 (Clarendon)</item>
+        <item>K01 (Court House)</item>
+        <item>C05 (Rosslyn)</item>
+        <item>C04 (Foggy Bottom-GWU)</item>
+        <item>C03 (Farragut West)</item>
+        <item>C02 (McPherson Sq)</item>
+        <item>D01 (Federal Triangle)</item>
+        <item>D02 (Smithsonian)</item>
+        <item>D03 (L\&apos;Enfant Plaza)</item>
+        <item>D04 (Federal Center SW)</item>
+        <item>D05 (Capitol South)</item>
+        <item>D06 (Eastern Market)</item>
+        <item>D07 (Potomac Ave)</item>
+        <item>D08 (Stadium-Armory)</item>
+        <item>G01 (Benning Road)</item>
+        <item>G02 (Capitol Heights)</item>
+        <item>G03 (Addison Road)</item>
+        <item>G04 (Morgan Boulevard)</item>
+        <item>G05 (Largo Town Center)</item>
+    </string-array>
+
+    <string-array name="wmata_stations_yellow">
+        <item>E10 (Greenbelt)</item>
+        <item>E09 (College Park-U of Md)</item>
+        <item>E08 (Prince George\&apos;s Plaza)</item>
+        <item>E07 (West Hyattsville)</item>
+        <item>E06 (Fort Totten)</item>
+        <item>E05 (Georgia Ave-Petworth)</item>
+        <item>E04 (Columbia Heights)</item>
+        <item>E03 (U Street)</item>
+        <item>E02 (Shaw-Howard U)</item>
+        <item>E01 (Mt Vernon Sq)</item>
+        <item>F01 (Gallery Place)</item>
+        <item>F02 (Archives)</item>
+        <item>F03 (L\&apos;Enfant Plaza)</item>
+        <item>C07 (Pentagon)</item>
+        <item>C08 (Pentagon City)</item>
+        <item>C09 (Crystal City)</item>
+        <item>C10 (Ronald Reagan Washington National Airport)</item>
+        <item>C11 (Potomac Yard)</item>
+        <item>C12 (Braddock Road)</item>
+        <item>C13 (King St-Old Town)</item>
+        <item>C97 (C\&amp;J Junction)</item>
+        <item>C14 (Eisenhower Ave)</item>
+        <item>C15 (Huntington)</item>
+        <item>J01 (Quaker Lane)</item>
+        <item>J02 (Van Dorn Street)</item>
+        <item>J03 (Franconia-Springfield)</item>
+    </string-array>
+
+    <string-array name="first_stations">
+        <item>A15</item>
+        <item>A14</item>
+        <item>A13</item>
+        <item>A12</item>
+        <item>A11</item>
+        <item>A10</item>
+        <item>A09</item>
+        <item>A08</item>
+        <item>A07</item>
+        <item>A06</item>
+        <item>A05</item>
+        <item>A04</item>
+        <item>A03</item>
+        <item>A02</item>
+        <item>A01</item>
+
+        <item>B11</item>
+        <item>B10</item>
+        <item>B09</item>
+        <item>B08</item>
+        <item>B07</item>
+        <item>B06</item>
+        <item>B05</item>
+        <item>B04</item>
+        <item>B35</item>
+        <item>B03</item>
+        <item>B02</item>
+        <item>B01</item>
+
+        <item>C97</item>
+        <item>C15</item>
+        <item>C14</item>
+        <item>C13</item>
+        <item>C12</item>
+        <item>C11</item>
+        <item>C10</item>
+        <item>C09</item>
+        <item>C08</item>
+        <item>C07</item>
+        <item>C06</item>
+        <item>C05</item>
+        <item>C04</item>
+        <item>C03</item>
+        <item>C02</item>
+        <item>C01</item>
+
+        <item>D98</item>
+        <item>D13</item>
+        <item>D12</item>
+        <item>D11</item>
+        <item>D10</item>
+        <item>D09</item>
+        <item>D08</item>
+        <item>D07</item>
+        <item>D06</item>
+        <item>D05</item>
+        <item>D04</item>
+        <item>D03</item>
+        <item>D02</item>
+        <item>D01</item>
+
+        <item>E10</item>
+        <item>E09</item>
+        <item>E08</item>
+        <item>E07</item>
+        <item>E06</item>
+        <item>E05</item>
+        <item>E04</item>
+        <item>E03</item>
+        <item>E02</item>
+        <item>E01</item>
+
+        <item>F11</item>
+        <item>F10</item>
+        <item>F09</item>
+        <item>F08</item>
+        <item>F07</item>
+        <item>F06</item>
+        <item>F05</item>
+        <item>F04</item>
+        <item>F03</item>
+        <item>F02</item>
+        <item>F01</item>
+
+        <item>G05</item>
+        <item>G04</item>
+        <item>G03</item>
+        <item>G02</item>
+        <item>G01</item>
+
+        <item>J03</item>
+        <item>J02</item>
+        <item>J01</item>
+
+        <item>K98</item>
+        <item>K08</item>
+        <item>K07</item>
+        <item>K06</item>
+        <item>K05</item>
+        <item>K04</item>
+        <item>K03</item>
+        <item>K02</item>
+        <item>K01</item>
+
+        <item>N06</item>
+        <item>N05</item>
+        <item>N04</item>
+        <item>N03</item>
+        <item>N02</item>
+        <item>N01</item>
+
+    </string-array>
+
+    <string-array name="last_stations">
+        <item>A15</item>
+        <item>A14</item>
+        <item>A13</item>
+        <item>A12</item>
+        <item>A11</item>
+        <item>A10</item>
+        <item>A09</item>
+        <item>A08</item>
+        <item>A07</item>
+        <item>A06</item>
+        <item>A05</item>
+        <item>A04</item>
+        <item>A03</item>
+        <item>A02</item>
+        <item>A01</item>
+
+        <item>B11</item>
+        <item>B10</item>
+        <item>B09</item>
+        <item>B08</item>
+        <item>B07</item>
+        <item>B06</item>
+        <item>B05</item>
+        <item>B04</item>
+        <item>B35</item>
+        <item>B03</item>
+        <item>B02</item>
+        <item>B01</item>
+
+        <item>C97</item>
+        <item>C15</item>
+        <item>C14</item>
+        <item>C13</item>
+        <item>C12</item>
+        <item>C11</item>
+        <item>C10</item>
+        <item>C09</item>
+        <item>C08</item>
+        <item>C07</item>
+        <item>C06</item>
+        <item>C05</item>
+        <item>C04</item>
+        <item>C03</item>
+        <item>C02</item>
+        <item>C01</item>
+
+        <item>D98</item>
+        <item>D13</item>
+        <item>D12</item>
+        <item>D11</item>
+        <item>D10</item>
+        <item>D09</item>
+        <item>D08</item>
+        <item>D07</item>
+        <item>D06</item>
+        <item>D05</item>
+        <item>D04</item>
+        <item>D03</item>
+        <item>D02</item>
+        <item>D01</item>
+
+        <item>E10</item>
+        <item>E09</item>
+        <item>E08</item>
+        <item>E07</item>
+        <item>E06</item>
+        <item>E05</item>
+        <item>E04</item>
+        <item>E03</item>
+        <item>E02</item>
+        <item>E01</item>
+
+        <item>F11</item>
+        <item>F10</item>
+        <item>F09</item>
+        <item>F08</item>
+        <item>F07</item>
+        <item>F06</item>
+        <item>F05</item>
+        <item>F04</item>
+        <item>F03</item>
+        <item>F02</item>
+        <item>F01</item>
+
+        <item>G05</item>
+        <item>G04</item>
+        <item>G03</item>
+        <item>G02</item>
+        <item>G01</item>
+
+        <item>J03</item>
+        <item>J02</item>
+        <item>J01</item>
+
+        <item>K98</item>
+        <item>K08</item>
+        <item>K07</item>
+        <item>K06</item>
+        <item>K05</item>
+        <item>K04</item>
+        <item>K03</item>
+        <item>K02</item>
+        <item>K01</item>
+
+        <item>N06</item>
+        <item>N05</item>
+        <item>N04</item>
+        <item>N03</item>
+        <item>N02</item>
+        <item>N01</item>
+
+    </string-array>
+
+    <string-array name="good_fair_poor">
+        <item>Good Condition</item>
+        <item>Fair Condition</item>
+        <item>Poor Condition</item>
+    </string-array>
+    <string-array name="main_or_siding">
+        <item>Main Protection</item>
+        <item>Siding Protection</item>
+    </string-array>
+    <string-array name="pipe_or_wire">
+        <item>Pipeline</item>
+        <item>Wireline</item>
+    </string-array>
+    <string-array name="fire_water">
+        <item>Flammable</item>
+        <item>Non-Flammable</item>
+    </string-array>
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <!-- Property -->
+    <LinearLayout
+        android:id="@+id/layoutRailroad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fieldRailroadIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/baseline_list_alt_24px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fieldRailroad"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:errorEnabled="true"
+            android:hint="@string/hint_choose_rr"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputRailroad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="20"
+                android:focusable="false"
+                android:inputType="textNoSuggestions|textCapCharacters" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <!-- Job Form Type -->
+    <LinearLayout
+        android:id="@+id/layoutJobServiceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fieldJobServiceTypeIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/baseline_list_alt_24px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fieldJobServiceType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:errorEnabled="true"
+            android:hint="@string/hint_utility_job"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputJobServiceType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="20"
+                android:focusable="false"
+                android:inputType="textNoSuggestions|textCapCharacters" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <!-- Job Number -->
+    <LinearLayout
+        android:id="@+id/layoutJobNbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/jobPickerImg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/ic_baseline_search_24px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fieldJobNbr"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:errorEnabled="true"
+            app:helperTextEnabled="true"
+            android:hint="@string/hint_choose_job"
+            android:clickable="false"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputJobNbr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="20"
+                android:clickable="false"
+                android:inputType="none"
+                android:focusable="false"
+                android:nextFocusUp="@id/inputJobNbr"
+                android:nextFocusLeft="@id/inputJobNbr"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</LinearLayout>

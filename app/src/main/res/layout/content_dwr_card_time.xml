@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dwr"
+            type="com.railprosfs.railsapp.data.observable.DwrItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:onClick="hideSoftKeyboard"
+        card_view:cardCornerRadius="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutTimesheetHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/HorzDelimit"
+                    android:layout_marginStart="@dimen/project_job_indent"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="@dimen/project_job_indent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/titleTime"
+                    style="@style/mDelimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/rpWhite"
+                    android:paddingStart="@dimen/title_padding"
+                    android:paddingEnd="@dimen/title_padding"
+                    android:text="@string/timesheet"
+                    android:textAllCaps="true"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintRight_toRightOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Dynamic Form data, order is important as we use visibility to adjust. -->
+            <!-- Hours of work for RWIC -->
+            <LinearLayout
+                android:id="@+id/layoutWorkHoursRounded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/layoutTimesheetHeader">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fieldWorkHoursRoundedIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="18dp"
+                    android:onClick="WorkHoursRoundedPicker"
+                    android:src="@drawable/outline_clock_24px" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fieldWorkHoursRounded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:errorEnabled="true"
+                    app:helperTextEnabled="true"
+                    app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputWorkHoursRounded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:text="@={dwr.workHoursRounded}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/inputNotPresentOnTrack"
+                    style="@style/CheckboxCustom"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight=".4"
+                    android:checked="@={dwr.notPresentOnTrack}"
+                    android:onClick="SetHoursWorked" />
+            </LinearLayout>
+
+            <!-- If a person is doubling as a trainer, they get some extra $. -->
+            <LinearLayout
+                android:id="@+id/layoutWorkHoursTraining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/layoutWorkHoursRounded">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="18dp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/inputPerformedTraining"
+                    style="@style/CheckboxCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:checked="@={dwr.performedTraining}" />
+            </LinearLayout>
+
+            <!-- A specific cost center is sometime specified for the hours worked. -->
+            <LinearLayout
+                android:id="@+id/layoutSpecialCostCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/layoutWorkHoursTraining">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fieldSpecialCostCenterIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="18dp"
+                    android:onClick="SpecialCostCenterPicker"
+                    android:src="@drawable/baseline_list_alt_24px" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fieldSpecialCostCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:errorEnabled="true"
+                    app:helperTextEnabled="true"
+                    app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputSpecialCostCenter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="30"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:text="@={dwr.specialCostCenterDspl}" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- RWIC Signature for time sheet -->
+            <LinearLayout
+                android:id="@+id/layoutRwicTimeSignature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSpecialCostCenter">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fieldRwicTimeSignatureIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="18dp"
+                    android:onClick="SignatureLauncher"
+                    android:src="@drawable/outline_pen_24px" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardviewRwicSignature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cardviewRwicSignatureboarder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageRwicTimeSignature"
+                            android:layout_width="300dp"
+                            android:layout_height="150dp"
+                            android:onClick="SignatureLauncher"
+                            android:padding="12dp"
+                            android:picassoImage="@{dwr.flagmanSignaturePhotoName}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/displayRwicTimeSignature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            app:layout_constraintLeft_toLeftOf="@+id/imageRwicTimeSignature"
+                            app:layout_constraintTop_toBottomOf="@+id/imageRwicTimeSignature" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/layoutRwicTimeSignatureError"
+                style="@style/TextAppearance.Design.Error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:text="@string/err_required_field"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@id/layoutRwicTimeSignature"
+                app:layout_constraintTop_toBottomOf="@id/layoutRwicTimeSignature" />
+
+            <!-- All client signature information -->
+            <LinearLayout
+                android:id="@+id/layoutClientSignatureInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutRwicTimeSignatureError">
+
+                <!-- Client Signature for time sheet -->
+                <LinearLayout
+                    android:id="@+id/layoutClientTimeSginature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fieldClientTimeSignatureIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp"
+                        android:onClick="SignatureLauncher"
+                        android:src="@drawable/outline_pen_24px" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardviewClientSignature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cardviewClientSignatureboarder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageClientTimeSignature"
+                                android:layout_width="300dp"
+                                android:layout_height="150dp"
+                                android:onClick="SignatureLauncher"
+                                android:padding="12dp"
+                                android:picassoImage="@{dwr.clientSignaturePhotoName}"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/displayClientTimeSignature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                app:layout_constraintLeft_toLeftOf="@+id/imageClientTimeSignature"
+                                app:layout_constraintTop_toBottomOf="@+id/imageClientTimeSignature" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/layoutClientTimeSignatureError"
+                    style="@style/TextAppearance.Design.Error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="78dp"
+                    android:text="@string/err_required_field"
+                    android:visibility="invisible" />
+
+                <!-- Client name and number -->
+                <LinearLayout
+                    android:id="@+id/layoutClientNameNbr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldClientContactName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputClientContactName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:inputType="text"
+                            android:text="@={dwr.clientName}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldClientContactNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputClientContactNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="10"
+                            android:inputType="phone"
+                            android:text="@={dwr.clientPhone}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Client email and address -->
+                <LinearLayout
+                    android:id="@+id/layoutClientEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldClientEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputClientEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:inputType="textEmailAddress"
+                            android:text="@={dwr.clientEmail}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldClientAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputClientAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:inputType="text"
+                            android:text="@={dwr.address}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- All railroad signature information -->
+            <LinearLayout
+                android:id="@+id/layoutRailSignatureInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutClientSignatureInfo">
+
+                <!-- Railroad Signature for time sheet -->
+                <LinearLayout
+                    android:id="@+id/layoutRailTimeSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fieldRailSignatureIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp"
+                        android:onClick="SignatureLauncher"
+                        android:src="@drawable/outline_pen_24px" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardviewRailSignature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cardviewRailSignatureboarder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageRailTimeSignature"
+                                android:layout_width="300dp"
+                                android:layout_height="150dp"
+                                android:onClick="SignatureLauncher"
+                                android:padding="12dp"
+                                android:picassoImage="@{dwr.railSignaturePhotoName}"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/displayRailTimeSignature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                app:layout_constraintLeft_toLeftOf="@+id/imageRailTimeSignature"
+                                app:layout_constraintTop_toBottomOf="@+id/imageRailTimeSignature" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/layoutRailTimeSignatureError"
+                    style="@style/TextAppearance.Design.Error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="78dp"
+                    android:text="@string/err_required_field"
+                    android:visibility="invisible" />
+
+                <!-- Client name and number -->
+                <LinearLayout
+                    android:id="@+id/layoutRailroadContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fieldRailroadContact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        app:errorEnabled="true"
+                        app:helperTextEnabled="true"
+                        app:hintEnabled="true">
+
+                        <!-- Feel free to remove the maxLenght in future -->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputRailroadContact"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="18"
+                            android:inputType="text"
+                            android:maxLength="10"
+                            android:text="@={dwr.railroadContact}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

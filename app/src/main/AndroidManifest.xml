@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?><!-- A complete log of the merged Manifest is in dir build/outputs/logs/manifest-merger-<debug/release>-report.txt. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.railprosfs.railsapp">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+
+    <!-- To use Environment.getExternalStoragePublicDirectory() requires requestLegacyExternalStorage=true.  May need to move to scoped storage at some point. -->
+    <application
+        android:networkSecurityConfig="@xml/network_scurity_config"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        tools:replace="allowBackup">
+
+        <receiver android:name="com.railprosfs.railsapp.service.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.share"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:label="@string/app_name"
+            android:name="com.railprosfs.railsapp.service.SpellCheckService"
+            android:permission="android.permission.BIND_TEXT_SERVICE" >
+            <intent-filter >
+                <action android:name="android.service.textservice.SpellCheckerService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.view.textservice.scs"
+                android:resource="@xml/spellchecker" />
+        </service>
+
+        <activity android:name="com.railprosfs.railsapp.AuthenticationSplashScreen"
+            android:theme="@style/LoginTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter android:label="@string/lblDeepLinkWelcome">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/www_domain"
+                    android:pathPrefix="/railworker"
+                    android:scheme="http" />
+                <data
+                    android:host="railworker"
+                    android:scheme="railprosfs" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.railprosfs.railsapp.Schedule">
+
+        </activity>
+        <activity
+            android:name="com.railprosfs.railsapp.Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name="com.railprosfs.railsapp.LoginAzure"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name="com.railprosfs.railsapp.Settings"
+            android:label="@string/set_name"
+            android:parentActivityName="com.railprosfs.railsapp.Schedule" />
+        <activity
+            android:name="com.railprosfs.railsapp.About"
+            android:label="@string/abt_name"
+            android:parentActivityName="com.railprosfs.railsapp.Settings" />
+        <activity
+            android:name="com.railprosfs.railsapp.Project"
+            android:label="@string/prj_name"
+            android:parentActivityName="com.railprosfs.railsapp.Schedule" />
+
+        <activity
+            android:name="com.railprosfs.railsapp.FlashAudit"
+            android:label="@string/audit"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.railprosfs.railsapp.JobSetup"
+            android:label="@string/title_activity_job_setup"
+            android:parentActivityName="com.railprosfs.railsapp.Schedule"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.railprosfs.railsapp.DwrEdit"
+            android:label="@string/title_activity_dwr_edit"
+            android:parentActivityName="com.railprosfs.railsapp.Schedule"
+            android:theme="@style/AppFormTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <service
+            android:name="com.railprosfs.railsapp.service.Refresh"
+            android:exported="false" />
+
+    </application>
+</manifest>

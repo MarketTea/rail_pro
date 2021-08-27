@@ -1,0 +1,228 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!-- Required to upgrade to 'Theme.MaterialComponents' from 'Theme.AppCompat', but adding '.Bridge' has things looks the same.
+         if that is removed, there will be some work around buttons and other things (if all the AppCompat was switched to Material). -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="buttonStyle">@style/AppTheme.Button</item>
+        <item name="alertDialogTheme">@style/AppAlertDialog</item>
+    </style>
+
+    <!-- Theme for Forms -->
+    <style name="AppFormTheme" parent="AppTheme.NoActionBar">
+        <item name="textInputStyle">
+            @style/outlinedBox
+        </item>
+    </style>
+
+    <!-- Special Theme for textInputStyle Compatible with Android 5.0 -->
+    <style name="outlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <!-- Override the accent in the default alert dialog -->
+    <style name="AppAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CheckboxCustom" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <!-- Override the color of the EditText -->
+    <style name="AppAlertDialogContent" parent="Theme.AppCompat.DayNight">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Even after all these years, have to do material buttons yourself. -->
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/rpWhite</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <!-- A button for opposite day! -->
+    <style name="AppTheme.Button.Opposite" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/rpWhite</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/rpWhite</item>
+
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="buttonStyle">@style/AppTheme.Button</item>
+    </style>
+
+    <style name="HorzBar">
+        <item name="android:text">@string/blank</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">@color/rpGray</item>
+        <item name="android:textSize">1dp</item>
+    </style>
+
+    <style name="HorzDelimit">
+        <item name="android:text">@string/blank</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">@color/rpGray</item>
+        <item name="android:textSize">1dp</item>
+    </style>
+
+    <style name="BottomBar">
+        <item name="android:text">@string/blank</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/bottom_bar_height</item>
+    </style>
+
+    <!-- Remember that Spinner styles must be added to the android:theme property -->
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Maritza Styles -->
+    <!-- Lable Small -->
+    <style name="mOverline" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Lable Title -->
+    <style name="mHeadline" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- Lable SubTitle -->
+    <style name="mSubHeadline" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Lable Delimiter -->
+    <style name="mDelimit" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackTitle</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- Lable Title Subtext -->
+    <style name="mSubtext" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Lable List Text Link -->
+    <style name="mListlink" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Lable List Text -->
+    <style name="mListline" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Lable Float FAB -->
+    <style name="mFABtext" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:background">@color/rpWhite</item>
+    </style>
+
+    <!-- Audit Question -->
+    <style name="mAuditQuestion" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- Document Card -->
+    <style name="mDocuCard" parent="CardView.Light">
+        <item name="cardBackgroundColor">@color/rpFlat</item>
+        <item name="android:layout_marginStart">@dimen/docu_card_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/docu_card_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/docu_card_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/docu_card_vertical</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <!-- TimePicker Dialog -->
+    <style name="MyTimePickerDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- CardText -->
+    <style name="mCardSubtext" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="mCardSubtextDark" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlack</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- RadioButton -->
+    <style name="mRadioButton" parent="android:Widget.Material.CompoundButton.RadioButton">
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textColor">@color/rpBlackFaded</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+</resources>

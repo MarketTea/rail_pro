@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="railworker.general"
+        android:title="General">
+        <ListPreference
+            android:defaultValue="None Selected"
+            android:entries="@array/property_name"
+            android:entryValues="@array/property_name"
+            android:key="1005"
+            android:summary="%s"
+            android:title="Default Rail Road" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="1006"
+            android:title="Enable Validation" />
+        <EditTextPreference
+            android:defaultValue="16"
+            android:key="1111"
+            android:title="Default Display Days"
+            android:summary="Display only DWRs and Job Setup Forms created this many days ago."/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="railworker.system"
+        android:title="@string/prf_System">
+
+        <PreferenceScreen
+            android:key="1007"
+            android:summary="Change Environment to PROD QA"
+            android:title="SandBox Mode"/>
+        <PreferenceScreen
+            android:key="1001"
+            android:summary="@string/prf_LogoutSum"
+            android:title="@string/prf_Logout">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:data="http://com.railprosfs.railsapp/logout"
+                android:targetClass="com.railprosfs.railsapp.AuthenticationSplashScreen"
+                android:targetPackage="com.railprosfs.railsapp"/>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="1002"
+            android:summary="@string/unknown"
+            android:title="@string/prf_Role">
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:summary="@string/blank"
+            android:title="@string/prf_About">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.railprosfs.railsapp.About"
+                android:targetPackage="com.railprosfs.railsapp"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>

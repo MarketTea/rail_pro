@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="about"
+            type="com.railprosfs.railsapp.data.observable.AboutModel" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".About">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="RailPros"
+                    android:textSize="96sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`Internet: ` + about.internetConnected, default=`Internet: Disconnected`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`API Status: ` + about.apiStatus, default = `API Status: Connecting...`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`Build Date: ` + about.date, default=`Build Date: ??/??/????`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`Version: ` + about.version, default=`Version: ?`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`Build Type: ` + about.buildType, default=`Build Type: ?`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{about.apiUrlBase, default = `API URL`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`User: ` + about.user, default=`User: ?`}"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@{`Field Worker Id: ` + about.fieldWorkerId + ` ` + about.name, default=`Field Worker Id: ? (name)`}"
+                    android:textSize="32sp" />
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22sp"
+                    android:gravity="center"
+                    android:text="Network Calls Status"
+                    android:padding="20sp"
+                    android:textSize="48sp"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Template Sync:\n ` + about.lastSyncTemplate, default=`Last Assignment Template:\n Unknown`}"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last JobSetup Forms Sync:\n ` + about.lastSyncJobForm, default=`Last JobSetup Forms Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last DWR Form Sync:\n ` + about.lastSyncDWRQuestion, default=`Last DWR Form Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Subdivision Sync:\n ` + about.lastSyncRailRoad, default=`Last Subdivision Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Document Sync:\n ` + about.lastSyncDocument, default=`Last Document Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Assignment Sync:\n ` + about.lastSyncAssignment, default=`Last Assignment Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last DWR Upload Sync:\n ` + about.lastSyncEventQueDwr, default=`Last DWR Upload Sync:\n Unknown`}"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Job Upload Sync:\n ` + about.lastSyncEventQueJob, default=`Last Job Upload Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last DWR Status Sync:\n ` + about.lastSyncDwrStatus, default=`Last DWR Status Sync:\n Unknown`}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:text="@{`Last Job Status Sync:\n ` + about.lastSyncJobStatus, default=`Last Job Status Sync:\n Unknown`}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

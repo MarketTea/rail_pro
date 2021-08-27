@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/project_job_indent">
+
+    <RelativeLayout android:id="@+id/rowJobNbrJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rowJobDescJT"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/project_job_indent"
+        android:paddingBottom="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblJobNbrJT"
+            style="@style/mHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jobnumber" />
+
+        <TextView
+            android:id="@+id/txtJobNbrJT"
+            style="@style/mHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/lblJobNbrJT"
+            tools:text="123456" />
+
+        <TextView
+            android:id="@+id/dateRangeJT"
+            style="@style/mOverline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblJobNbrJT"
+            android:layout_alignStart="@id/lblJobNbrJT"
+            tools:text="2/11/18 - 8/31/18" />
+    </RelativeLayout>
+
+    <LinearLayout android:id="@+id/rowPropertyJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowJobNbrJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblPropertyJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_property" />
+
+        <TextView
+            android:id="@+id/txtPropertyJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="UP" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowSubdivisionJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowPropertyJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        android:paddingBottom="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblSubdivisionJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_subdivision" />
+
+        <TextView
+            android:id="@+id/txtSubdivisionJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="Pacific North West" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowJobDescJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowSubdivisionJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        android:paddingBottom="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/jobDescJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="This is the description of the job that is being displayed..." />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowAddedNotesJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowJobDescJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblAddedNotesJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_addition_notes" />
+
+        <TextView
+            android:id="@+id/txtAddedNotesJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes Some Additional Notes " />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowEquipmentJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowAddedNotesJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblEquipmentJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_equipment_description" />
+
+        <TextView
+            android:id="@+id/txtEquipmentJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="We got some 3477s sitting here." />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowDistanceFromTrackJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowEquipmentJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        android:paddingBottom="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblDistanceFromTrackJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_distance_from_tracks" />
+
+        <TextView
+            android:id="@+id/txtDistanceFromTrackJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="300 ft" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowRoadMasterJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowDistanceFromTrackJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblRoadmasterJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_Supervisor" />
+        <TextView
+            android:id="@+id/txtRoadmasterJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="Train Boss" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowPermitJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowRoadMasterJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblPermitJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_permit_number" />
+
+        <TextView
+            android:id="@+id/txtPermitJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="3477-44" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowMilePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowPermitJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        android:paddingBottom="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblMilePost"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_mile_post" />
+
+        <TextView
+            android:id="@+id/txtMilePost"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="MP-3477AA" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowSupervisorJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowMilePost"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblSupervisorJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_supervisor" />
+
+        <TextView
+            android:id="@+id/txtSupervisorJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="Marshall"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rowLocationJT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowSupervisorJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblLocationJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_location" />
+
+        <TextView
+            android:id="@+id/txtLocationJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            android:onClick="LaunchGMaps"
+            android:textColor="@color/colorAccent"
+            tools:text="733 Rough House Pl" />
+    </LinearLayout>
+
+    <RelativeLayout android:id="@+id/rowContactJT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowLocationJT"
+        android:layout_marginStart="@dimen/project_job_indent"
+        >
+        <TextView
+            android:id="@+id/lblContactJT"
+            style="@style/mCardSubtextDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_contacts" />
+
+        <TextView
+            android:id="@+id/txtContactJT"
+            style="@style/mCardSubtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/lblContactJT"
+            android:layout_marginStart="@dimen/margin_lbl_txt"
+            tools:text="Johnny Jon Johnston" />
+
+        <ImageView
+            android:id="@+id/imgHomeMapLinkJT"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/location"
+            android:onClick="LaunchGMaps"
+            android:src="@drawable/locationlink" />
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Setup a Job -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/extraJobSetup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dwr_list_vertical_margin">
+    <TextView
+        style="@style/HorzBar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+    <ImageView
+        android:id="@+id/imgStatusJobSetup"
+        android:layout_width="@dimen/dwr_status_icon"
+        android:layout_height="@dimen/dwr_status_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+        android:layout_marginStart="@dimen/dwr_status_icon_horizontal_margin"
+        android:layout_marginEnd="@dimen/dwr_status_icon_horizontal_margin"
+        android:contentDescription="@string/status"/>
+    <TextView
+        android:id="@+id/lblJobSetupLink"
+        style="@style/mListlink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/imgStatusJobSetup"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dwr_list_vertical_margin"
+        android:layout_marginStart="@dimen/dwr_indent"
+        android:onClick="ShowJsDetail"
+        android:text="@string/start_job_setup"/>
+</RelativeLayout>

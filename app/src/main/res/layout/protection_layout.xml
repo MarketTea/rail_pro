@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="dwr"
+            type="com.railprosfs.railsapp.data.observable.DwrItem" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/protectionErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/err_required_protection"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputP707"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.p707}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputP1102"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.p1102}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/input1107"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.p1107}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputEC1"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pEc1}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputFormB"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pFormB}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputFormC"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pFormC}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputFormW"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pFormW}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputForm23"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pForm23}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputInaccessibleTrack"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pDerails}"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputForm23Y"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pForm23Y}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputTrackTime"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pTrackTime}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputTrackWarrant"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pWarrant}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputObserverPoc"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pObserver}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputTrackAuthority"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pAuthority}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputNoProtection"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pNoProtect}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputLoneWatchman"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pWatchman}"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputLiveFlagman"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pLiveFlagman}"/>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inputVerbalPermission"
+                style="@style/CheckboxCustom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight=".5"
+                android:checked="@={dwr.pVerbalPermission}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

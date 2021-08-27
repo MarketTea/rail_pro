@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="field"
+            type="com.railprosfs.railsapp.data_layout.FieldPlacementTbl"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/subHeader"
+            style="@style/mSubHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{field.fieldPrompt}"
+            android:visibility="@{field.fieldPromptVisibility, default=gone}"/>
+    </LinearLayout>
+</layout>
