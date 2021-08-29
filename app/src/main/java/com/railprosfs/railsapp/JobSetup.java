@@ -57,11 +57,11 @@ import static com.railprosfs.railsapp.utility.Constants.*;
 
 public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
 
-    private RecyclerView rv;
-    private JobSetupAdapter adapter;
+    private RecyclerView rcv_job_setup;
+    private JobSetupAdapter jobSetupAdapter;
     private JobSetupViewModel model;
 
-    private TextView lblSubmit, lblSave, lblDelete;
+    private TextView tvSubmit, tvSave, tvDelete;
     private FloatingActionButton fabSubmit, fabMenu, fabSave, fabDelete;
     private Animation fabSpinOff, fabSpinOn, fabTapOff, fabTapOn, recyDark, recyLight;
     private boolean fabMenuActive = false;
@@ -125,9 +125,9 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
 
         // Widgets
         Toolbar toolbar = findViewById(R.id.toolbar);
-        lblSubmit = findViewById(R.id.lblSubmit);
-        lblSave = findViewById(R.id.lblSave);
-        lblDelete = findViewById(R.id.lblDelete);
+        tvSubmit = findViewById(R.id.lblSubmit);
+        tvSave = findViewById(R.id.lblSave);
+        tvDelete = findViewById(R.id.lblDelete);
         fabDelete = findViewById(R.id.fabDelete);
         fabSubmit = findViewById(R.id.fabSubmit);
         fabSave = findViewById(R.id.fabSave);
@@ -170,16 +170,17 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
                 fabMenu.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
             }
         });
+
         fabTapOn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_tap_on);
         fabTapOff = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_tap_off);
         recyDark = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.recycle_darken);
         recyLight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.recycle_lighten);
 
         //Setup RecyclerView
-        rv = findViewById(R.id.jobsetup_rv);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new JobSetupAdapter(getApplicationContext());
-        rv.setAdapter(adapter);
+        rcv_job_setup = findViewById(R.id.rcv_job_setup);
+        rcv_job_setup.setLayoutManager(new LinearLayoutManager(this));
+        jobSetupAdapter = new JobSetupAdapter(getApplicationContext());
+        rcv_job_setup.setAdapter(jobSetupAdapter);
 
         // Setup Model
         String holdFmt = getResources().getString(R.string.title_activity_job_setup_extra);
@@ -254,7 +255,7 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
                         ShowFabMenu();
                     } else {
                         HideFabMenu();
-                        adapter.setEnabled(false);
+                        jobSetupAdapter.setEnabled(false);
                     }
                 } else {
                     // Load the Questions
@@ -272,15 +273,15 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
             public void onChanged(List<FieldPlacementTbl> fieldPlacementTbls) {
                 //Animation for RV
                 LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getApplicationContext(), R.anim.layout_animation_fall_down);
-                rv.setLayoutAnimation(animation);
+                rcv_job_setup.setLayoutAnimation(animation);
 
                 //Append Custom Fields to Adapter
                 fieldPlacementTbls.add(appendSignatureField());
                 fieldPlacementTbls.add(appendSignatureDateField());
                 fieldPlacementTbls.add(1, appendJobNumberField());
 
-                adapter.RefreshJobSetupData(fieldPlacementTbls);
-                rv.scheduleLayoutAnimation();
+                jobSetupAdapter.RefreshJobSetupData(fieldPlacementTbls);
+                rcv_job_setup.scheduleLayoutAnimation();
                 // Load the Answers
                 getList();
             }
@@ -297,22 +298,22 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
                 if(answers != null && answers.size() > 0) {
                     if (!model.editMode) {
                         model.editMode = true;
-                        adapter.RefreshDataContent(answers);
+                        jobSetupAdapter.RefreshDataContent(answers);
                     }
                 } else {
-                    loadDefaultAssginment();
+                    loadDefaultAssignment();
                 }
             }
         });
     }
 
     // Populate some fields based on information already present in the Assignment.
-    public void loadDefaultAssginment() {
+    public void loadDefaultAssignment() {
         model.getAssignmentTbl().observe(this, new Observer<AssignmentTbl>() {
             @Override
             public void onChanged(AssignmentTbl assignmentTbl) {
                 if(assignmentTbl != null) { // No Assignment if no shift yet.
-                    adapter.setDefault(assignmentTbl);
+                    jobSetupAdapter.setDefault(assignmentTbl);
                     model.setmJobNumber(assignmentTbl.JobNumber);
                 } else { // fall back to job info
                     loadDefaultJob();
@@ -334,7 +335,7 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
                     holdAssignment.JobId = jobTbl.Id;
                     holdAssignment.JobNumber = jobTbl.JobNumber;
                     holdAssignment.CustomerName = jobTbl.CustomerName;
-                    adapter.setDefault(holdAssignment);
+                    jobSetupAdapter.setDefault(holdAssignment);
                 }
             }
         });
@@ -343,14 +344,14 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
     @Override
     protected void onPause() {
         super.onPause();
-        model.mJobSetupAnswers = adapter.getmJobSetupAnswers();
+        model.mJobSetupAnswers = jobSetupAdapter.getmJobSetupAnswers();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.setAnswers(model.mJobSetupAnswers);
-        adapter.notifyDataSetChanged();
+        jobSetupAdapter.setAnswers(model.mJobSetupAnswers);
+        jobSetupAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -391,40 +392,40 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
     }
 
     //Open and Close Menu
-    public void ShowMenu(View view) {
+    public void showMenu(View view) {
         if (fabMenuActive) {
-            OpenMenu();
+            openMenu();
         } else {
-            CloseMenu();
+            closeMenu();
         }
     }
 
-    public void OpenMenu() {
+    public void openMenu() {
         fabMenu.startAnimation(fabSpinOn);
         fabSubmit.startAnimation(fabTapOff);
         fabSave.startAnimation(fabTapOff);
-        rv.startAnimation(recyLight);
-        lblSubmit.setVisibility(View.INVISIBLE);
-        lblSave.setVisibility(View.INVISIBLE);
+        rcv_job_setup.startAnimation(recyLight);
+        tvSubmit.setVisibility(View.INVISIBLE);
+        tvSave.setVisibility(View.INVISIBLE);
         fabSubmit.setClickable(false);
         fabSave.setClickable(false);
         fabDelete.startAnimation(fabTapOff);
-        lblDelete.setVisibility(View.GONE);
+        tvDelete.setVisibility(View.GONE);
         fabDelete.setClickable(false);
         fabMenuActive = false;
     }
 
-    public void CloseMenu() {
+    public void closeMenu() {
         fabMenu.startAnimation(fabSpinOff);
         fabSubmit.startAnimation(fabTapOn);
         fabSave.startAnimation(fabTapOn);
-        rv.startAnimation(recyDark);
-        lblSubmit.setVisibility(View.VISIBLE);
-        lblSave.setVisibility(View.VISIBLE);
+        rcv_job_setup.startAnimation(recyDark);
+        tvSubmit.setVisibility(View.VISIBLE);
+        tvSave.setVisibility(View.VISIBLE);
         fabSubmit.setClickable(true);
         fabSave.setClickable(true);
         fabDelete.startAnimation(fabTapOn);
-        lblDelete.setVisibility(View.VISIBLE);
+        tvDelete.setVisibility(View.VISIBLE);
         fabDelete.setClickable(true);
         fabMenuActive = true;
     }
@@ -476,8 +477,8 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
     public void simpleConfirmResponse(int message) {
         switch (message) {
             case R.string.msg_confirm_submitJobSetup:
-                if (!Settings.getUseValidation(this) || (adapter.checkValidation() && Settings.getUseValidation(this))) {
-                    SaveJobSetupThread work = new SaveJobSetupThread(this, adapter.getAnswers(), model, SaveJobSetupThread.SUBMIT, new Messenger(mHandler));
+                if (!Settings.getUseValidation(this) || (jobSetupAdapter.checkValidation() && Settings.getUseValidation(this))) {
+                    SaveJobSetupThread work = new SaveJobSetupThread(this, jobSetupAdapter.getAnswers(), model, SaveJobSetupThread.SUBMIT, new Messenger(mHandler));
                     work.start();
                 } else {
                     ValidationJobSetupDialog();
@@ -556,7 +557,7 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
     /******************* End of Dialog Pickers *******************************/
 
     public void saveJobSetupData(View view) {
-        SaveJobSetupThread work = new SaveJobSetupThread(this, adapter.getAnswers(), model, SaveJobSetupThread.SAVE, new Messenger(mHandler));
+        SaveJobSetupThread work = new SaveJobSetupThread(this, jobSetupAdapter.getAnswers(), model, SaveJobSetupThread.SAVE, new Messenger(mHandler));
         work.start();
     }
 
@@ -593,7 +594,7 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
 
     public FieldPlacementTbl appendJobNumberField() {
         FieldPlacementTbl tbl = new FieldPlacementTbl();
-        tbl.FieldType = JobSetupAdapter.INPUTTEXT;
+        tbl.FieldType = JobSetupAdapter.INPUT_TEXT;
         tbl.Required = true;
         tbl.FieldPrompt = "Job Number";
         tbl.FieldInstructions = "";
@@ -605,7 +606,7 @@ public class JobSetup extends AppCompatActivity implements FragmentTalkBack {
     }
 
     public void FormError() {
-        CloseMenu();
+        closeMenu();
         simpleDisplayRequest(R.string.title_file_not_saved, getResources().getString(R.string.msg_not_saved_jobsetup));
     }
 

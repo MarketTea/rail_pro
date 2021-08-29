@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="field"
-            type="com.railprosfs.railsapp.data_layout.FieldPlacementTbl"/>
+            type="com.railprosfs.railsapp.data_layout.FieldPlacementTbl" />
     </data>
 
     <LinearLayout
@@ -48,12 +49,12 @@
 
         <TextView
             android:id="@+id/subheader"
-            android:layout_marginLeft="72dp"
+            style="@style/mHeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/mHeadline"
+            android:layout_marginLeft="72dp"
             android:text="@{field.fieldInstructions}"
-            android:visibility="@{field.fieldInstructionVisibility, default=gone}"/>
+            android:visibility="@{field.fieldInstructionVisibility, default=gone}" />
 
     </LinearLayout>
 </layout>

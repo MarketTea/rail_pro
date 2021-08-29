@@ -35,7 +35,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/jobsetup_rv"
+        android:id="@+id/rcv_job_setup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="70dp"
@@ -160,7 +160,7 @@
             android:layout_gravity="right"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="18dp"
-            android:onClick="ShowMenu"
+            android:onClick="showMenu"
             app:fabSize="normal"
             android:foregroundGravity="right"
             app:maxImageSize="36dp"

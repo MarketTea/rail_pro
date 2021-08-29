@@ -1,7 +1,9 @@
 package com.railprosfs.railsapp.ui_support;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,31 +48,31 @@ import static com.railprosfs.railsapp.utility.Constants.FIELD_JSF_SIGN_RWIC;
 public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final String HEADER = "FormHeader";
-    private final String SUBHEADER = "FormSubHeader";
-    public static final String INPUTTEXT = "UserInput";
-    public static final String INPUTMULTILINE = "MultiLine";
-    public static final String INPUTCITY = "36";
-    public static final String INPUTCITY2 = "UserInputAllFirstCapital";
-    public static final String REALLIST = "RealList";
+    private final String SUB_HEADER = "FormSubHeader";
+    public static final String INPUT_TEXT = "UserInput";
+    public static final String INPUT_MULTI_LINE = "MultiLine";
+    public static final String INPUT_CITY = "36";
+    public static final String INPUT_CITY_2 = "UserInputAllFirstCapital";
+    public static final String REAL_LIST = "RealList";
     public static final int UI_GROUP_STATE_NAME = 10;
     public static final int UI_GROUP_MAPPING = 20;
     public static final int UI_GROUP_CITY = 21;
     public static final int UI_GROUP_MULTILINE = 30;
     public static final String CHECKBOX = "YesNo";
-    public static final String INTEGERTEXT = "Integer";
+    public static final String INTEGER_TEXT = "Integer";
     public static final String DECIMAL = "Decimal2";
     private static final String PHONE = "Phone";
-    private static final String ODDTYPE_POC = "DB_PointOfContactPhone_editable";
+    private static final String ODD_TYPE_POC = "DB_PointOfContactPhone_editable";
     public static final String SIGNATURE = "Signature";
     public static final String DATE = "Date";
-    private static final String PICKONE = "PickOne";
+    private static final String PICK_ONE = "PickOne";
     private static final String GPS = "GpsCoordinates";
-    private static final String PIPEORWIRE = "PIPEORWIRE";
+    private static final String PIPE_OR_WIRE = "PIPEORWIRE";
     private static final String FIREWATER = "FIREWATER";
-    private static final String GOODFAIRPOOR = "GOODFAIRPOOR";
-    private static final String MAINORSIDING = "MAINORSIDING";
-    private static final String MAINORSLIDING = "MAINORSLIDING"; /* Need to support both for a time.  Once everyone on this version or above, can remove from backend (and then here). */
-    private static final String USASTATES = "SOLE_USASTATES";
+    private static final String GOOD_FAIR_POOR = "GOODFAIRPOOR";
+    private static final String MAIN_OR_SIDING = "MAINORSIDING";
+    private static final String MAIN_OR_SLIDING = "MAINORSLIDING"; /* Need to support both for a time.  Once everyone on this version or above, can remove from backend (and then here). */
+    private static final String USA_STATES = "SOLE_USASTATES";
 
     private LayoutInflater layoutInflater;
     private List<FieldPlacementTbl> mJobSetupQuestions;
@@ -95,7 +97,7 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void RefreshDataContent(List<AnswerTbl> answers) {
-        if(answers != null && mJobSetupAnswers != null) {
+        if (answers != null && mJobSetupAnswers != null) {
             if (answers.size() == mJobSetupAnswers.size()) {
                 for (int i = 0; i < answers.size(); i++) {
                     //Fill Answers
@@ -123,13 +125,13 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             JobSetupAnswer answer = mJobSetupAnswers.get(i);
             if (question.Required) {
                 // Empty Input Do Something To that Position
-                if (question.FieldType.equals(INPUTTEXT) && (answer.getUserInput() == null || answer.getUserInput().equals(""))) {
+                if (question.FieldType.equals(INPUT_TEXT) && (answer.getUserInput() == null || answer.getUserInput().equals(""))) {
                     answer.setInvalid(true);
                     validation = false;
-                } else if (question.FieldType.equals(INPUTMULTILINE) && (answer.getUserInput() == null || answer.getUserInput().equals(""))) {
+                } else if (question.FieldType.equals(INPUT_MULTI_LINE) && (answer.getUserInput() == null || answer.getUserInput().equals(""))) {
                     answer.setInvalid(true);
                     validation = false;
-                } else if ((question.FieldType.equals(PHONE) || question.FieldType.equals(ODDTYPE_POC))
+                } else if ((question.FieldType.equals(PHONE) || question.FieldType.equals(ODD_TYPE_POC))
                         && (answer.getUserInput() == null || answer.getUserInput().equals(""))) {
                     answer.setInvalid(true);
                     validation = false;
@@ -139,13 +141,13 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 } else if (question.FieldType.equals(SIGNATURE) && (answer.getSignatureFileName() == null || answer.getSignatureFileName().equals(""))) {
                     answer.setInvalid(true);
                     validation = false;
-                } else if(question.FieldType.equals(CHECKBOX) && (answer.isYesNo())) {
+                } else if (question.FieldType.equals(CHECKBOX) && (answer.isYesNo())) {
                     /* nothing to do at the moment */
-                } else if((answer.getUserInput() == null || answer.getUserInput().length() == 0)
+                } else if ((answer.getUserInput() == null || answer.getUserInput().length() == 0)
                         && (answer.getDate() == null || answer.getDate().length() == 0)
                         && (answer.getSignatureFileName() == null || answer.getSignatureFileName().length() == 0)) {
-                        answer.setInvalid(true);
-                        validation = false;
+                    answer.setInvalid(true);
+                    validation = false;
                 }
             }
         }
@@ -153,7 +155,7 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void initializeAnswers(List<FieldPlacementTbl> tbl) {
-        if(mJobSetupAnswers == null || mJobSetupAnswers.size() == 0) {
+        if (mJobSetupAnswers == null || mJobSetupAnswers.size() == 0) {
             mJobSetupAnswers = new ArrayList<>();
             for (int i = 0; i < tbl.size(); i++) {
                 // The FieldId is the backend database id, it is the best (most stable)
@@ -179,12 +181,14 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mJobSetupAnswers = answerList;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
+        Log.d("NEED_TYPE_ADAPTER", "view type is: " + viewType);
         switch (viewType) {
             case R.layout.header_row:
                 HeaderRowBinding hrb = DataBindingUtil.inflate(layoutInflater, R.layout.header_row, parent, false);
@@ -244,106 +248,107 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-        if(mJobSetupQuestions == null || mJobSetupAnswers == null) { return; /* if null we can skip it I guess. */ }
+        if (mJobSetupQuestions == null || mJobSetupAnswers == null) {
+            return; /* if null we can skip it I guess. */
+        }
         FieldPlacementTbl tbl = mJobSetupQuestions.get(position);
-        final JobSetupAnswer answ = mJobSetupAnswers.get(position);
-        answ.setViewVisible(editable);
+        final JobSetupAnswer jobSetupAnswer = mJobSetupAnswers.get(position);
+        jobSetupAnswer.setViewVisible(editable);
 
         if (tbl.FieldType.equals(HEADER)) {
             ((HeaderViewHolder) holder).binding.setField(tbl);
-        } else if (tbl.FieldType.equals(SUBHEADER)) {
+        } else if (tbl.FieldType.equals(SUB_HEADER)) {
             ((HeaderSubViewHolder) holder).binding.setField(tbl);
-        } else if (tbl.FieldType.equals(INPUTTEXT)) {
+        } else if (tbl.FieldType.equals(INPUT_TEXT)) {
             switch (tbl.Group) {
                 case UI_GROUP_STATE_NAME:
                     ((StateNameViewHolder) holder).binding.setField(tbl);
-                    ((StateNameViewHolder) holder).binding.setAnswer(answ);
+                    ((StateNameViewHolder) holder).binding.setAnswer(jobSetupAnswer);
                     break;
                 case UI_GROUP_MULTILINE:
                     ((MultilineViewHolder) holder).binding.setField(tbl);
-                    ((MultilineViewHolder) holder).binding.setAnswer(answ);
+                    ((MultilineViewHolder) holder).binding.setAnswer(jobSetupAnswer);
                     break;
                 case UI_GROUP_CITY:
                     ((CityViewHolder) holder).binding.setField(tbl);
-                    ((CityViewHolder) holder).binding.setAnswer(answ);
+                    ((CityViewHolder) holder).binding.setAnswer(jobSetupAnswer);
                     break;
                 case UI_GROUP_MAPPING:
                     ((MapViewHolder) holder).binding.setField(tbl);
-                    ((MapViewHolder) holder).binding.setAnswer(answ);
+                    ((MapViewHolder) holder).binding.setAnswer(jobSetupAnswer);
                     break;
                 default:
                     ((UserInputViewHolder) holder).binding.setField(tbl);
-                    ((UserInputViewHolder) holder).binding.setAnswer(answ);
+                    ((UserInputViewHolder) holder).binding.setAnswer(jobSetupAnswer);
                     break;
             }
-        } else if (tbl.FieldType.equals(PHONE) || tbl.FieldType.equals(ODDTYPE_POC)) {
+        } else if (tbl.FieldType.equals(PHONE) || tbl.FieldType.equals(ODD_TYPE_POC)) {
             ((PhoneViewHolder) holder).binding.setField(tbl);
-            ((PhoneViewHolder) holder).binding.setAnswer(answ);
-            if(((PhoneViewHolder) holder).binding.inputPhone.getTag() == null) {
+            ((PhoneViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+            if (((PhoneViewHolder) holder).binding.inputPhone.getTag() == null) {
                 ((PhoneViewHolder) holder).binding.inputPhone.setTag(PHONE);
                 ((PhoneViewHolder) holder).binding.inputPhone.addTextChangedListener(phoneFormatter);
             }
         } else if (tbl.FieldType.equals(CHECKBOX)) {
             ((CheckBoxViewHolder) holder).binding.setField(tbl);
-            ((CheckBoxViewHolder) holder).binding.setAnswer(answ);
-            if(tbl.Group > 1000) {
+            ((CheckBoxViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+            if (tbl.Group > 1000) {
                 final int group = tbl.Group;
                 ((CheckBoxViewHolder) holder).binding.checkboxItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toggleRequired(answ.isYesNo(), group);
+                        toggleRequired(jobSetupAnswer.isYesNo(), group);
                     }
                 });
             }
-        } else if (tbl.FieldType.equals(REALLIST)) {
-            if (tbl.Code.equalsIgnoreCase(USASTATES)){
+        } else if (tbl.FieldType.equals(REAL_LIST)) {
+            if (tbl.Code.equalsIgnoreCase(USA_STATES)) {
                 ((StateNameViewHolder) holder).binding.setField(tbl);
-                ((StateNameViewHolder) holder).binding.setAnswer(answ);
+                ((StateNameViewHolder) holder).binding.setAnswer(jobSetupAnswer);
             }
-        } else if (tbl.FieldType.equals(PICKONE) && tbl.Code.equals(GOODFAIRPOOR)) {
+        } else if (tbl.FieldType.equals(PICK_ONE) && tbl.Code.equals(GOOD_FAIR_POOR)) {
             ((GoodFairPoorViewHolder) holder).binding.setField(tbl);
-            ((GoodFairPoorViewHolder) holder).binding.setAnswer(answ);
-        } else if (tbl.FieldType.equals(PICKONE) && tbl.Code.equals(PIPEORWIRE)) {
+            ((GoodFairPoorViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(PICK_ONE) && tbl.Code.equals(PIPE_OR_WIRE)) {
             ((PipeOrWireViewHolder) holder).binding.setField(tbl);
-            ((PipeOrWireViewHolder) holder).binding.setAnswer(answ);
-        } else if (tbl.FieldType.equals(PICKONE) && tbl.Code.equals(FIREWATER)) {
+            ((PipeOrWireViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(PICK_ONE) && tbl.Code.equals(FIREWATER)) {
             ((FireWaterViewHolder) holder).binding.setField(tbl);
-            ((FireWaterViewHolder) holder).binding.setAnswer(answ);
-        } else if (tbl.FieldType.equals(PICKONE) && tbl.Code.equals(MAINORSIDING)) {
+            ((FireWaterViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(PICK_ONE) && tbl.Code.equals(MAIN_OR_SIDING)) {
             ((MainOrSidingViewHolder) holder).binding.setField(tbl);
-            ((MainOrSidingViewHolder) holder).binding.setAnswer(answ);
-        } else if (tbl.FieldType.equals(PICKONE) && tbl.Code.equals(MAINORSLIDING)) {
+            ((MainOrSidingViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(PICK_ONE) && tbl.Code.equals(MAIN_OR_SLIDING)) {
             ((MainOrSidingViewHolder) holder).binding.setField(tbl);
-            ((MainOrSidingViewHolder) holder).binding.setAnswer(answ);
+            ((MainOrSidingViewHolder) holder).binding.setAnswer(jobSetupAnswer);
         } else if (tbl.FieldType.equals(DATE)) {
             ((DatePickerViewHolder) holder).binding.setField(tbl);
-            ((DatePickerViewHolder) holder).binding.setAnswer(answ);
+            ((DatePickerViewHolder) holder).binding.setAnswer(jobSetupAnswer);
         } else if (tbl.FieldType.equals(SIGNATURE)) {
             ((SignaturePickerViewHolder) holder).binding.setField(tbl);
-            ((SignaturePickerViewHolder) holder).binding.setAnswer(answ);
-        } else if(tbl.FieldType.equals(INTEGERTEXT)) {
+            ((SignaturePickerViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(INTEGER_TEXT)) {
             ((IntegerViewHolder) holder).binding.setField(tbl);
-            ((IntegerViewHolder) holder).binding.setAnswer(answ);
-        } else if(tbl.FieldType.equals(DECIMAL)) {
+            ((IntegerViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(DECIMAL)) {
             ((RealViewHolder) holder).binding.setField(tbl);
-            ((RealViewHolder) holder).binding.setAnswer(answ);
-        } else if(tbl.FieldType.equals(GPS)) {
+            ((RealViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(GPS)) {
             ((MapViewHolder) holder).binding.setField(tbl);
-            ((MapViewHolder) holder).binding.setAnswer(answ);
-        } else if(tbl.FieldType.equals(INPUTMULTILINE)) {
+            ((MapViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(INPUT_MULTI_LINE)) {
             ((MultilineViewHolder) holder).binding.setField(tbl);
-            ((MultilineViewHolder) holder).binding.setAnswer(answ);
-        } else if(tbl.FieldType.equals(INPUTCITY) || tbl.FieldType.equals(INPUTCITY2)) {
+            ((MultilineViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else if (tbl.FieldType.equals(INPUT_CITY) || tbl.FieldType.equals(INPUT_CITY_2)) {
             ((CityViewHolder) holder).binding.setField(tbl);
-            ((CityViewHolder) holder).binding.setAnswer(answ);
-        }
-        else {
+            ((CityViewHolder) holder).binding.setAnswer(jobSetupAnswer);
+        } else {
             if (tbl.Group == 0) {
                 ((UserInputViewHolder) holder).binding.setField(tbl);
-                ((UserInputViewHolder) holder).binding.setAnswer(answ);
+                ((UserInputViewHolder) holder).binding.setAnswer(jobSetupAnswer);
             } else if (tbl.Group == 6) {
                 ((DatePickerViewHolder) holder).binding.setField(tbl);
-                ((DatePickerViewHolder) holder).binding.setAnswer(answ);
+                ((DatePickerViewHolder) holder).binding.setAnswer(jobSetupAnswer);
             }
         }
 
@@ -368,9 +373,9 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             switch (type) {
                 case HEADER:
                     return R.layout.header_row;
-                case SUBHEADER:
+                case SUB_HEADER:
                     return R.layout.header_sub_row;
-                case INPUTTEXT:
+                case INPUT_TEXT:
                     switch (mJobSetupQuestions.get(position).Group) {
                         case UI_GROUP_STATE_NAME:
                             return R.layout.state_name_row_picker;
@@ -384,43 +389,43 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             return R.layout.user_input_row;
                     }
                 case PHONE:
-                case ODDTYPE_POC:
+                case ODD_TYPE_POC:
                     return R.layout.user_input_phone_row;
                 case CHECKBOX:
                     return R.layout.checbox_row;
-                case REALLIST:
-                    if(mJobSetupQuestions.get(position).Code.equalsIgnoreCase(USASTATES)) {
+                case REAL_LIST:
+                    if (mJobSetupQuestions.get(position).Code.equalsIgnoreCase(USA_STATES)) {
                         return R.layout.state_name_row_picker;
                     }
                 case DATE:
                     return R.layout.date_picker_row;
                 case SIGNATURE:
                     return R.layout.signature_picker_row;
-                case PICKONE:
+                case PICK_ONE:
                     switch (mJobSetupQuestions.get(position).Code) {
-                        case GOODFAIRPOOR:
+                        case GOOD_FAIR_POOR:
                             return R.layout.good_fair_poor_row_picker;
-                        case PIPEORWIRE:
+                        case PIPE_OR_WIRE:
                             return R.layout.pipe_or_wire_row_picker;
                         case FIREWATER:
                             return R.layout.fire_water_row_picker;
-                        case MAINORSIDING:
+                        case MAIN_OR_SIDING:
                             return R.layout.main_or_siding_row_picker;
-                        case MAINORSLIDING:
+                        case MAIN_OR_SLIDING:
                             return R.layout.main_or_siding_row_picker;
                         default:
                             return R.layout.empty_row;
                     }
-                case INTEGERTEXT:
+                case INTEGER_TEXT:
                     return R.layout.user_input_int_row;
                 case DECIMAL:
                     return R.layout.user_input_real_row;
                 case GPS:
                     return R.layout.user_input_map_row;
-                case INPUTMULTILINE:
+                case INPUT_MULTI_LINE:
                     return R.layout.user_input_multiline_row;
-                case INPUTCITY:
-                case INPUTCITY2:
+                case INPUT_CITY:
+                case INPUT_CITY_2:
                     return R.layout.user_input_city_row;
                 default:
                     // This manages non-type db names that sometimes come down as a type.  Need to look at the group to find the real type.
@@ -632,9 +637,9 @@ public class JobSetupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void toggleRequired(boolean toggle, int group) {
-        for(int i = 0; i < mJobSetupQuestions.size(); i++) {
+        for (int i = 0; i < mJobSetupQuestions.size(); i++) {
             FieldPlacementTbl temp = mJobSetupQuestions.get(i);
-            if(temp.Group == group) {
+            if (temp.Group == group) {
                 temp.setRequired(toggle);
             }
         }

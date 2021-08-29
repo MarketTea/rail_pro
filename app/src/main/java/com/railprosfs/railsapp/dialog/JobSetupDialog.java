@@ -31,8 +31,8 @@ import java.util.List;
 
 import static com.railprosfs.railsapp.utility.Constants.*;
 
-public class JobSetupDialog extends DialogFragment{
-    private DwrJobSetupListener Activity;
+public class JobSetupDialog extends DialogFragment {
+    private DwrJobSetupListener jobSetupListener;
     private Button positiveButton;
     private Button negativeButton;
     private EditText railroadText;
@@ -66,13 +66,14 @@ public class JobSetupDialog extends DialogFragment{
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppAlertDialog);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dwr_jobsetup_layout, null);
+        View view = inflater.inflate(R.layout.dialog_job_setup, null);
         builder.setView(view);
         setLaunchJobSetup(builder); // Setup buttons
 
         jobNumberText = view.findViewById(R.id.inputJobNbr);
         railroadText = view.findViewById(R.id.inputRailroad);
         jobServiceType = view.findViewById(R.id.inputJobServiceType);
+
         jobNumberText.setText(jobNumber != null ? jobNumber : "");
         railroadText.setText(railRoadCode != null ? railRoadCode : "");
         jobServiceType.setText(jobServiceName != null ? jobServiceName : "");
@@ -89,7 +90,7 @@ public class JobSetupDialog extends DialogFragment{
         setButtonEnabled(false, positiveButton);
         setButtonEnabled(false, negativeButton);
 
-        if(checkValid()) {
+        if (checkValid()) {
             jobNumberText.setText(jobNumber);
             railroadText.setText(railRoadCode);
             jobServiceType.setText(jobServiceName);
@@ -104,45 +105,50 @@ public class JobSetupDialog extends DialogFragment{
         checkValidButton();
 
         //Setup the pickers manually.
-        ImageView jobImage = getDialog().findViewById(R.id.jobPickerImg);
-        ImageView typeImage = getDialog().findViewById(R.id.fieldJobServiceTypeIcon);
-        ImageView railroadImage = getDialog().findViewById(R.id.fieldRailroadIcon);
+        ImageView imgJobNumber = getDialog().findViewById(R.id.jobPickerImg);
+        ImageView imgFormType = getDialog().findViewById(R.id.fieldJobServiceTypeIcon);
+        ImageView imgRailRoad = getDialog().findViewById(R.id.fieldRailroadIcon);
 
-        EditText jobEditText = getDialog().findViewById(R.id.inputJobNbr);
-        EditText typeEditText = getDialog().findViewById(R.id.inputJobServiceType);
-        EditText railroadEditText = getDialog().findViewById(R.id.inputRailroad);
+        EditText edtJobNumber = getDialog().findViewById(R.id.inputJobNbr);
+        EditText edtFormType = getDialog().findViewById(R.id.inputJobServiceType);
+        EditText edtRailRoad = getDialog().findViewById(R.id.inputRailroad);
 
-        jobImage.setOnClickListener(new View.OnClickListener() {
+        imgJobNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchJobPicker();
             }
         });
-        jobEditText.setOnClickListener(new View.OnClickListener() {
+
+        edtJobNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchJobPicker();
             }
         });
-        typeImage.setOnClickListener(new View.OnClickListener() {
+
+        imgFormType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 simpleListRequest(R.string.title_pick_job_type, R.array.job_setup_types);
             }
         });
-        typeEditText.setOnClickListener(new View.OnClickListener() {
+
+        edtFormType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 simpleListRequest(R.string.title_pick_job_type, R.array.job_setup_types);
             }
         });
-        railroadImage.setOnClickListener(new View.OnClickListener() {
+
+        imgRailRoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 simpleListRequest(R.string.title_pick_property, R.array.property_name, Railroads.GetPropertiesSorted(getContext()));
             }
         });
-        railroadEditText.setOnClickListener(new View.OnClickListener() {
+
+        edtRailRoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 simpleListRequest(R.string.title_pick_property, R.array.property_name, Railroads.GetPropertiesSorted(getContext()));
@@ -163,7 +169,7 @@ public class JobSetupDialog extends DialogFragment{
                     @Override
                     public void onClick(DialogInterface dialog, int job) {
                         if (checkValid()) {
-                            Activity.startJobSetup(railRoadKey, railRoadCode, jobListingId, 0, jobServiceKey);
+                            jobSetupListener.startJobSetup(railRoadKey, railRoadCode, jobListingId, 0, jobServiceKey);
                         }
                     }
                 });
@@ -186,7 +192,7 @@ public class JobSetupDialog extends DialogFragment{
      *  The Job Picker Dialog is custom built just for the Picking of Jobs.
      */
     private void launchJobPicker() {
-        FragmentManager mgr = ((AppCompatActivity)Activity).getSupportFragmentManager();
+        FragmentManager mgr = ((AppCompatActivity) jobSetupListener).getSupportFragmentManager();
         Fragment fragment = mgr.findFragmentByTag(KY_JOB_PICKER);
         if (fragment != null) {
             mgr.beginTransaction().remove(fragment).commit();
@@ -212,36 +218,41 @@ public class JobSetupDialog extends DialogFragment{
     }
 
     /**
-     *  The basic fragment support for showing a simple listbox picker.
-     * @param title     The resource id of a string to use as a title displayed on the dialog.
-     * @param source    The resource id of an array of values used to provide selection options.
-     * @param values    An optional list of values to use instead of the one hardcoded in source.
+     * The basic fragment support for showing a simple listbox picker.
+     *
+     * @param title  The resource id of a string to use as a title displayed on the dialog.
+     * @param source The resource id of an array of values used to provide selection options.
+     * @param values An optional list of values to use instead of the one hardcoded in source.
      */
     private void simpleListRequest(int title, int source, List<String> values) {
         // Set up the fragment.
-        FragmentManager mgr = ((AppCompatActivity)Activity).getSupportFragmentManager();
-        Fragment fragment = mgr.findFragmentByTag(KY_SIMPLE_LIST_FRAG);
+        FragmentManager fragmentManager = ((AppCompatActivity) jobSetupListener).getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(KY_SIMPLE_LIST_FRAG);
         if (fragment != null) { // Clear out the previous use.
-            mgr.beginTransaction().remove(fragment).commit();
+            fragmentManager.beginTransaction().remove(fragment).commit();
         }
         // Launch the picker.
-        SimpleListDialog picker = new SimpleListDialog(title, source);
-        if(values != null){
-            picker.ChangeListArray(values);
+        SimpleListDialog simpleListDialog = new SimpleListDialog(title, source);
+        if (values != null) {
+            simpleListDialog.ChangeListArray(values);
         }
-        picker.show(mgr, KY_SIMPLE_LIST_FRAG);
+        simpleListDialog.show(fragmentManager, KY_SIMPLE_LIST_FRAG);
     }
-    private void simpleListRequest(int title, int source) { simpleListRequest(title, source, null); }
+
+    private void simpleListRequest(int title, int source) {
+        simpleListRequest(title, source, null);
+    }
 
     /**
-     *  Simple List Dialog callback. The simple listbox picker is used by a number of
-     *  methods to pick from a long list with a single tap.  This method is where the
-     *  selection is returned. The source array is used as the key to determine what
-     *  code needs to deal with the resulting selection.
+     * Simple List Dialog callback. The simple listbox picker is used by a number of
+     * methods to pick from a long list with a single tap.  This method is where the
+     * selection is returned. The source array is used as the key to determine what
+     * code needs to deal with the resulting selection.
+     *
      * @param source    The selection index, e.g chosen value.
      * @param selection The resource key of the original array provided as the list.
      */
-    public void simpleListResponse(int source, int selection){
+    public void simpleListResponse(int source, int selection) {
 
         switch (source) {
             case R.array.job_setup_types:
@@ -253,7 +264,7 @@ public class JobSetupDialog extends DialogFragment{
             case R.array.property_name:
                 railRoadKey = Railroads.PropertyKey(getContext(), Railroads.GetPropertiesSorted(getContext()).get(selection));
                 railRoadCode = Railroads.PropertyName(getContext(), railRoadKey);
-                if(!railroadText.getText().toString().equalsIgnoreCase(railRoadCode)) {
+                if (!railroadText.getText().toString().equalsIgnoreCase(railRoadCode)) {
                     jobNumberText.setText("");
                     jobNumber = "";
                 }
@@ -284,7 +295,7 @@ public class JobSetupDialog extends DialogFragment{
         // Verify that the host activity implements the callback interface
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
-            Activity = (DwrJobSetupListener) context;
+            jobSetupListener = (DwrJobSetupListener) context;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(getDialog().toString() + " must implement DwrJobListener");

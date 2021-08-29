@@ -15,10 +15,10 @@ import androidx.room.PrimaryKey;
 public class FieldPlacementTbl extends BaseObservable {
 
     @NonNull
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     public int Id;                      //Primary Key
     public int TemplateId;
-    public String TemplateName;         
+    public String TemplateName;
     public int FieldId;
     public String FieldType;
     public String FieldPrompt;
@@ -44,7 +44,7 @@ public class FieldPlacementTbl extends BaseObservable {
 
     @Bindable
     public String getFieldInstructions() {
-        if(FieldInstructions == null) {
+        if (FieldInstructions == null) {
             return "";
         }
         return FieldInstructions;
@@ -52,21 +52,20 @@ public class FieldPlacementTbl extends BaseObservable {
 
     @Bindable
     public int getFieldPromptVisibility() {
-        if(FieldPrompt != null && !FieldPrompt.equals("")) {
+        if (FieldPrompt != null && !FieldPrompt.equals("")) {
             return View.VISIBLE;
-        }
-        else {
+        } else {
             return View.GONE;
         }
     }
 
     @Bindable
     public String getFieldPrompt() {
-        if(FieldPrompt == null) {
+        if (FieldPrompt == null) {
             return "";
         }
 
-        if(Required) {
+        if (Required) {
             return FieldPrompt + "*";
         }
         return FieldPrompt;
@@ -74,10 +73,9 @@ public class FieldPlacementTbl extends BaseObservable {
 
     @Bindable
     public int getFieldInstructionVisibility() {
-        if(FieldInstructions != null && !FieldInstructions.equals("")) {
+        if (FieldInstructions != null && !FieldInstructions.equals("")) {
             return View.VISIBLE;
-        }
-        else {
+        } else {
             return View.GONE;
         }
     }
